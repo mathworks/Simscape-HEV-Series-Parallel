@@ -1,5 +1,5 @@
 %% CONSTANTS
-% Copyright 2011-2014 The MathWorks, Inc.
+% Copyright 2011-2015 The MathWorks, Inc.
 
 FigurePos1 = [450   499   574   186];
 FigurePos2 = [449    69   574   372];
@@ -41,8 +41,8 @@ title('Spectrogram, DC Bus','FontSize',16,'FontWeight','Bold')
 xlabel('Time','FontSize',12,'FontWeight','bold')
 ylabel('Frequency (Hz)','FontSize',12,'FontWeight','Bold')
 set(gcf,'Position',FigurePos2);
-set(gca,'YLim',[0 1200]);
-view(0,90)
+%set(gca,'YLim',[0 1200]);
+%view(0,90)
 
 
 %% PLOT GENERATOR SPEED

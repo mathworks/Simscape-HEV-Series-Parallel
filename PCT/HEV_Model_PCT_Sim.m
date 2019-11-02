@@ -1,8 +1,15 @@
 %% SETUP MODEL FOR RSIM
 HEV_Vehicle_Mass = HEV_Param.Vehicle.Mass;
 HEV_Model_Driver_Ki = 0.04;
-mdl = 'HEV_Model_PCT';
+mdl = 'HEV_SeriesParallel';
 open_system(mdl);
+
+%% CONFIGURE FOR TEST
+Select_HEV_Model_Systems('Sys BC VS',HEV_Configs);
+set_param(mdl,'StopFcn',['%' get_param(mdl,'StopFcn')]);
+set_param([mdl '/Vehicle Dynamics/Simple'],'mass','HEV_Vehicle_Mass');
+set_param([mdl '/SLRT Scope'],'Commented','on');
+save_system(mdl);
 
 %% BUILD TARGET
 rtp = Simulink.BlockDiagram.buildRapidAcceleratorTarget(mdl);
@@ -45,10 +52,16 @@ legend(cellstr(num2str(fliplr(Mass_array(1:1:end))')),'FontSize',10);
 delete(gcp);
 HEV_Param.Control.Mode_Logic_TS = 0.1;
 
-%% CLEANUP DIR
+%% UNDO CONFIGURATION CHANGES, CLEANUP DIR 
+stopfn_str = get_param(mdl,'StopFcn');
+set_param(mdl,'StopFcn',stopfn_str(2:end));
+set_param([mdl '/Vehicle Dynamics/Simple'],'mass','HEV_Param.Vehicle.Mass');
+set_param([mdl '/SLRT Scope'],'Commented','off');
+Select_HEV_Model_Systems('Sys BD VF',HEV_Configs);
+save_system(mdl);
 bdclose(mdl);
 delete('*.mex*')
 !rmdir slprj /S/Q
 
-% Copyright 2013-2014 The MathWorks(TM), Inc.
+% Copyright 2013-2015 The MathWorks(TM), Inc.
 

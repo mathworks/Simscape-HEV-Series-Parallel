@@ -1,5 +1,5 @@
 function Select_HEV_Model_Systems(HEV_Config_Name,HEV_Configs)
-% Copyright 2011-2014 The MathWorks, Inc.
+% Copyright 2011-2015 The MathWorks, Inc.
 
 CurrentPath = gcs;
 SlashInd = findstr(CurrentPath,'/');
@@ -15,13 +15,15 @@ systems_to_set = setdiff(fieldnames(HEV_Configs),{'Type' 'Sim_Time'});
 
 x = getfield(HEV_Configs(HEV_config_index),'Electrical');
 if(~strcmp(char(x.choice),'Empty'))
-  set_param(char(x.path),'BlockChoice',char(x.choice));
+    %set_param(char(x.path),'BlockChoice',char(x.choice));
+    set_param(char(x.path),'OverrideUsingVariant',strrep(char(x.choice),' ','_'));
 end
 
 for i=1:length(systems_to_set)
     x = getfield(HEV_Configs(HEV_config_index),char(systems_to_set(i)));
     if(~strcmp(char(x.choice),'Empty'))
-        set_param(char(x.path),'BlockChoice',char(x.choice));
+        %set_param(char(x.path),'BlockChoice',char(x.choice));
+        set_param(char(x.path),'OverrideUsingVariant',strrep(char(x.choice),' ','_'));
     end
 end
 

@@ -1,119 +1,114 @@
 
 <!DOCTYPE html
   PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html xmlns:mso="urn:schemas-microsoft-com:office:office" xmlns:msdt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882"><head>
+<html><head>
       <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>HEV Model Demo Script</title><meta name="generator" content="MATLAB 7.12"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2011-04-15"><meta name="DC.source" content="HEV_Model_Demo_Script.m"><style type="text/css">
+      --><title>HEV Model Demo Script</title><meta name="generator" content="MATLAB 8.6"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2015-08-16"><meta name="DC.source" content="HEV_Model_Demo_Script.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
-body {
-  background-color: white;
-  margin:10px;
-}
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
 
-h1 {
-  color: #990000; 
-  font-size: x-large;
-}
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
 
-h2 {
-  color: #990000;
-  font-size: medium;
-}
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
 
-/* Make the text shrink to fit narrow windows, but not stretch too far in 
-wide windows. */ 
-p,h1,h2,div.content div {
-  max-width: 600px;
-  /* Hack for IE6 */
-  width: auto !important; width: 600px;
-}
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
 
-pre.codeinput {
-  background: #EEEEEE;
-  padding: 10px;
-}
-@media print {
-  pre.codeinput {word-wrap:break-word; width:100%;}
-} 
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
 
-span.keyword {color: #0000FF}
-span.comment {color: #228B22}
-span.string {color: #A020F0}
-span.untermstring {color: #B20000}
-span.syscmd {color: #B28C00}
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
 
-pre.codeoutput {
-  color: #666666;
-  padding: 10px;
-}
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
 
-pre.error {
-  color: red;
-}
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
 
-p.footer {
-  text-align: right;
-  font-size: xx-small;
-  font-weight: lighter;
-  font-style: italic;
-  color: gray;
-}
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
 
-  </style>
-<!--[if gte mso 9]><xml>
-<mso:CustomDocumentProperties>
-<mso:_dlc_DocId msdt:dt="string">FV3TYEPWNNQC-24-76094</mso:_dlc_DocId>
-<mso:_dlc_DocIdItemGuid msdt:dt="string">cf3daf38-9f06-4a80-8cba-73ae89b5e253</mso:_dlc_DocIdItemGuid>
-<mso:_dlc_DocIdUrl msdt:dt="string">http://sharepoint/marketing/product/da/physmod/ecl/_layouts/15/DocIdRedir.aspx?ID=FV3TYEPWNNQC-24-76094, FV3TYEPWNNQC-24-76094</mso:_dlc_DocIdUrl>
-</mso:CustomDocumentProperties>
-</xml><![endif]-->
-</head><body><div class="content"><h1>HEV Model Demo Script</h1><p>
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>HEV Model Demo Script</h1><p>
 <span style="font-family:Arial">
 <span style="font-size:10pt">
-<tr><a><b><u>Model</u></b></a><br>
+<tr><b><u>Model</u></b><br>
 <tr>1.  <a href="matlab:open_system('HEV_SeriesParallel');">Open HEV Model</a><br>
 <tr>2.  <a href="matlab:Test_HEV_Model_SHORT;">Run Drive Cycles</a><br>
 <tr>3.  <a href="matlab:cd([HEV_Model_HomeDir '/Fuel_Consumption']);edit Create_Fuel_Consumption_LUT;">Estimate Fuel Economy With Measured Data</a><br>
 <br>
-<tr><a><b><u>Simulate</u></b></a><br>
-<tr>4. <a href="matlab:cd([HEV_Model_HomeDir '/PCT']);edit HEV_Model_PCT_Sim;HEV_Model_PCT;">Distribute Simulations Using Parallel Computing</a><br>
+<tr><b><u>Simulate</u></b><br>
+<tr>4. <a href="matlab:cd([HEV_Model_HomeDir '/PCT']);edit HEV_Model_PCT_Sim;HEV_SeriesParallel;">Distribute Simulations Using Parallel Computing</a><br>
 <tr>5.  Analyze and Document: <a href="matlab:open('HEV_Model_Report_SHORT.html');">View Report</a>, <a href="matlab:cd([HEV_Model_HomeDir '/Reports']);open('HEV_Model_Report_SHORT.rpt');">Generate Report</a><br>
 <tr>6.  Power Quality Plots: <a href="matlab:edit DC_Power_Quality_Analysis;">Create Plots</a><br>
 <br>
-<tr><a><b><u>Deploy</u></b></a><br>
+<tr><b><u>Deploy</u></b><br>
 <tr>7. <a href="matlab:cd([HEV_Model_HomeDir '/Local_Solver']);edit Test_RT_Model">Improve Simulation Performance With Local Solvers</a><br>
 <tr>8. <a href="matlab:cd([HEV_Model_HomeDir '/RSIM']);edit HEV_Model_RSIM">Deploy Simulation As a Standalone Executable</a><br>
 </style>
 </style>
-</p><p>Copyright 2011-2014 The MathWorks&#8482;, Inc.</p><p class="footer"><br>
-      Published with MATLAB&reg; 7.12<br></p></div><!--
+</p><p>Copyright 2011-2015 The MathWorks&#8482;, Inc.</p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2015b</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 %% HEV Model Demo Script
 %
 % <html>
 % <span style="font-family:Arial">
 % <span style="font-size:10pt">
-% <tr><a><b><u>Model</u></b></a><br>
+% <tr><b><u>Model</u></b><br>
 % <tr>1.  <a href="matlab:open_system('HEV_SeriesParallel');">Open HEV Model</a><br>
 % <tr>2.  <a href="matlab:Test_HEV_Model_SHORT;">Run Drive Cycles</a><br>
 % <tr>3.  <a href="matlab:cd([HEV_Model_HomeDir '/Fuel_Consumption']);edit Create_Fuel_Consumption_LUT;">Estimate Fuel Economy With Measured Data</a><br>
 % <br>
-% <tr><a><b><u>Simulate</u></b></a><br>
-% <tr>4. <a href="matlab:cd([HEV_Model_HomeDir '/PCT']);edit HEV_Model_PCT_Sim;HEV_Model_PCT;">Distribute Simulations Using Parallel Computing</a><br>
+% <tr><b><u>Simulate</u></b><br>
+% <tr>4. <a href="matlab:cd([HEV_Model_HomeDir '/PCT']);edit HEV_Model_PCT_Sim;HEV_SeriesParallel;">Distribute Simulations Using Parallel Computing</a><br>
 % <tr>5.  Analyze and Document: <a href="matlab:open('HEV_Model_Report_SHORT.html');">View Report</a>, <a href="matlab:cd([HEV_Model_HomeDir '/Reports']);open('HEV_Model_Report_SHORT.rpt');">Generate Report</a><br>
 % <tr>6.  Power Quality Plots: <a href="matlab:edit DC_Power_Quality_Analysis;">Create Plots</a><br>
 % <br>
-% <tr><a><b><u>Deploy</u></b></a><br>
+% <tr><b><u>Deploy</u></b><br>
 % <tr>7. <a href="matlab:cd([HEV_Model_HomeDir '/Local_Solver']);edit Test_RT_Model">Improve Simulation Performance With Local Solvers</a><br>
 % <tr>8. <a href="matlab:cd([HEV_Model_HomeDir '/RSIM']);edit HEV_Model_RSIM">Deploy Simulation As a Standalone Executable</a><br>
 % </style>
 % </style>
 % </html>
 % 
-% Copyright 2011-2014 The MathWorks(TM), Inc.
+% Copyright 2011-2015 The MathWorks(TM), Inc.
 
 
 

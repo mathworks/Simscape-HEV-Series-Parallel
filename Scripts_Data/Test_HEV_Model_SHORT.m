@@ -1,6 +1,7 @@
-% Copyright 2011-2014 The MathWorks, Inc.
+% Copyright 2011-2015 The MathWorks, Inc.
 
-expModel = bdroot;
+expModel = 'HEV_SeriesParallel';
+open_system(expModel);
 
 ModelVariants = {'System Level' 'Mean Value' 'Detailed'};
 BattVariants = {'Predefined' 'Generic'};

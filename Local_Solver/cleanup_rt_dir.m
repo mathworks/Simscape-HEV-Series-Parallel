@@ -1,11 +1,12 @@
 % CLEANUP RT TEST DIR
-% Copyright 2011-2014 The MathWorks, Inc.
+% Copyright 2011-2015 The MathWorks, Inc.
 
-delete('*_Solverbio.m')
-delete('*_Solverpt.m')
-delete('*_Solverref.m')
-delete('*.dlm')
-delete('*.xml')
+mdl = 'HEV_SeriesParallel';
+delete([mdl '*bio.m'])
+delete([mdl '*pt.m'])
+delete([mdl '*ref.m'])
+delete([mdl '*.dlm'])
+delete([mdl '*.xml'])
 rtw_dirs = dir('*_rtw');
 for i=1:size(rtw_dirs,1)
     rmdir(rtw_dirs(i).name,'s');

@@ -1,11 +1,16 @@
 %% OPEN MODEL
-% Copyright 2011-2014 The MathWorks, Inc.
+% Copyright 2011-2015 The MathWorks, Inc.
 
-mdl = 'HEV_Model_Local_Solver';
+mdl = 'HEV_SeriesParallel';
 open_system(mdl);
+Select_HEV_Model_Systems('Sys BC VS',HEV_Configs);
+set_param(mdl,'StopTime','30');
+
+set_param(mdl,'SimscapeLogType','None');
+set_param(mdl,'SignalLogging','off');
 
 %% GET REFERENCE RESULTS
-open_system([mdl '/Desktop Settings']);
+HEVSP_setdesktop
 sim(mdl)
 t_ref = Car.time; y_ref = Car.signals(4).values(:,1);
 clear tout yout
@@ -19,7 +24,7 @@ xlabel('Time (s)','FontSize',12);ylabel('Vehicle Speed');
 legend({'Reference'},'Location','best')
 
 %% LOAD REAL-TIME SIMULATION SOLVER SETTINGS
-open_system([mdl '/Real Time Settings']);
+HEVSP_setrealtime
 sim(mdl)
 t_fs = Car.time; y_fs = Car.signals(4).values(:,1);
 
@@ -45,7 +50,7 @@ set_param(gcs, 'SimulationCommand', 'connect')
 set_param(gcs, 'SimulationCommand', 'start')
 
 open_system(mdl);
-disp('Waiting for xPC to finish...');
+disp('Waiting for Simulink Real-Time to finish...');
 pause(1);
 disp(get_param(bdroot,'SimulationStatus'));
 while(~strcmp(get_param(bdroot,'SimulationStatus'),'stopped'))
@@ -54,13 +59,16 @@ while(~strcmp(get_param(bdroot,'SimulationStatus'),'stopped'))
 end
 %% PLOT REFERENCE AND REAL-TIME RESULTS
 figure(1)
+clf
 set(gcf,'Position',[552    50   472   301]);
-h1=plot(t_ref,y_ref,'k','LineWidth',3);
+h1=plot(t_ref,y_ref,'k','LineWidth',5);
 hold on
 h2=stairs(t_fs,y_fs,'r','LineWidth',2.5);
-h3=stairs(tg.TimeLog,tg.OutputLog,'c:','LineWidth',2.5);
+h3=stairs(tg.TimeLog,tg.OutputLog,'c-.','LineWidth',1);
 hold off
 xlabel('Time (s)'); ylabel('Results');
 title('Reference and Real-Time Results','FontSize',14,'FontWeight','Bold');
 legend([h1(1),h2(1),h3(1)],{'Reference','Fixed-Step','Real-Time'},'Location','Best');
 
+%% CLOSE MODEL AND CLEAN UP DIRECTORY
+cleanup_rt_dir
