@@ -1,5 +1,5 @@
 %% CONSTANTS
-% Copyright 2011-2017 The MathWorks, Inc.
+% Copyright 2011-2018 The MathWorks, Inc.
 
 FigurePos1 = [450   499   574   186];
 FigurePos2 = [449    69   574   372];

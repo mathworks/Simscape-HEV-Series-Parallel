@@ -1,5 +1,5 @@
 function HEVSP_tictoc(enable)
-% Copyright 2011-2017 The MathWorks, Inc.
+% Copyright 2011-2018 The MathWorks, Inc.
 
 if(strcmpi(enable,'on'))
     set_param(bdroot,'StartFcn','tic;');
