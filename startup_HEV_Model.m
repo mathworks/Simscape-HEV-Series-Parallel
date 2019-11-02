@@ -1,4 +1,4 @@
-% Copyright 2011 The MathWorks, Inc.
+% Copyright 2014 The MathWorks, Inc.
 
 HEV_Model_HomeDir = pwd;
 addpath(pwd);

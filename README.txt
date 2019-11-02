@@ -1,6 +1,6 @@
 README file for HEV_SeriesParallel demonstration
 Steve Miller
-Copyright 2011 The MathWorks, Inc.
+Copyright 2014 The MathWorks, Inc.
 
 To start this demonstration, run startup_HEV_Model.m
 This will bring you to the simplest configuration of the full vehicle.

@@ -28,10 +28,13 @@ component VariableInertia
   end
 
   function setup
-    through( t, I.t, [] );
     I.w = initial_velocity;
   end
   
+  branches
+    t : I.t -> *; 
+  end
+
   equations
     t == inertia * I.w.der;
   end
