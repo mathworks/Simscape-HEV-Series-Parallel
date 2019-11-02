@@ -4,12 +4,21 @@ expModel = 'HEV_SeriesParallel';
 open_system(expModel);
 
 ModelVariants = {'System Level' 'Mean Value' 'Detailed'};
-BattVariants = {'Predefined' 'Generic'};
+BattVariants = {'Predefined' 'Generic'  'Cells'};
 VehVariants = {'Simple' 'Full'};
 
 SimDuration = [max(UrbanCycle1.time) max(UrbanCycle2.time) max(UrbanCycle3.time)];
+
+MV_testInd = 1;
+Batt_testInd = 1;
+Veh_testInd = 1;
+
+set_param([expModel '/Vehicle Dynamics'],'OverrideUsingVariant',VehVariants{Veh_testInd});
+set_param([expModel '/Electrical'],'OverrideUsingVariant',strrep(ModelVariants{MV_testInd},' ','_'));
+set_param([expModel '/Electrical/' ModelVariants{MV_testInd} '/Battery'],'OverrideUsingVariant',BattVariants{Batt_testInd});
+
 set_param(bdroot,'FastRestart','on')
-for MV_ind = 1:1
+for MV_ind = MV_testInd:MV_testInd
     
     MV_str = char(ModelVariants(MV_ind));
     MV_name = strrep(MV_str,' ','_');
@@ -19,10 +28,7 @@ for MV_ind = 1:1
         for Veh_ind = 1:1 %length(VehVariants)
             Veh_str = char(VehVariants(Veh_ind));
             Veh_name = strrep(Veh_str,' ','_');
-            if (strcmp(get_param(bdroot,'FastRestart'),'off'))
-                set_param([expModel '/Vehicle Dynamics'],'BlockChoice',Veh_str);
-            end
-            for Batt_ind=1:1 %length(BattVariants)
+            for Batt_ind=2:2 %length(BattVariants)
                 Batt_str = char(BattVariants(Batt_ind));
                 Batt_name = strrep(Batt_str,' ','_');
                 
@@ -30,15 +36,10 @@ for MV_ind = 1:1
                     set_param(expModel,'StopTime',num2str(SimDuration(DC_ind)));
                 %end
                 Drive_Cycle_Num = DC_ind;
-                if (strcmp(get_param(bdroot,'FastRestart'),'off'))
-                    set_param([expModel '/Electrical'],'BlockChoice',MV_str);
-                end
-                if (strcmp(get_param(bdroot,'FastRestart'),'off'))
-                    set_param([expModel '/Electrical/' MV_str '/Battery'],'BlockChoice',Batt_str);
-                end
-                disp(['Simulating UC' num2str(DC_ind) ', ' get_param([expModel '/Electrical'],'BlockChoice') ', '...
-                    get_param([expModel '/Vehicle Dynamics'],'BlockChoice') ' Vehicle, ',...
-                    get_param([expModel '/Electrical/' MV_str '/Battery'],'BlockChoice') ' Battery'] );
+
+                disp(['Simulating UC' num2str(DC_ind) ', ' get_param([expModel '/Electrical'],'ActiveVariant') ', '...
+                    get_param([expModel '/Vehicle Dynamics'],'ActiveVariant') ' Vehicle, ',...
+                    get_param([expModel '/Electrical/' MV_str '/Battery'],'ActiveVariant') ' Battery'] );
                 sim(expModel);
                 
                 if exist('Electricals','var')

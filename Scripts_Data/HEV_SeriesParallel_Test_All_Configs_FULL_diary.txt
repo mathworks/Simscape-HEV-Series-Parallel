@@ -1,0 +1,157 @@
+UC1, System_Level, Simple Vehicle, Predefined Battery, Ideal Gear Model
+Elapsed time for HEV_SeriesParallel = 7.199
+UC1, System_Level, Simple Vehicle, Predefined Battery, Lossy Gear Model
+UC1, System_Level, Simple Vehicle, Generic Battery, Ideal Gear Model
+UC1, System_Level, Simple Vehicle, Generic Battery, Lossy Gear Model
+[Warning: Program interruption (Ctrl-C) has been detected.] 
+
+------------------------------------------------------------------------
+          std::terminate() detected at Sat Aug 26 08:28:28 2017
+------------------------------------------------------------------------
+
+Configuration:
+  Crash Decoding      : Disabled - No sandbox or build area path
+  Crash Mode          : continue (default)
+  Current Graphics Driver: Intel Intel(R) HD Graphics 4400 Version 4.3.0 - Build 20.19.15.4531
+  Default Encoding    : windows-1252
+  Deployed            : false
+  Graphics card 1     : Intel Corporation ( 0x8086 ) Intel(R) HD Graphics Family Version 20.19.15.4531 (2016-9-29)
+  Host Name           : muc-smiller
+  MATLAB Architecture : win64
+  MATLAB Entitlement ID: 2895372
+  MATLAB Root         : C:\Program Files\MATLAB\R2017b_bash
+  MATLAB Version      : 9.3.0.665824 (R2017b)
+  OpenGL              : hardware
+  Operating System    : Microsoft Windows 10 Enterprise
+  Processor ID        : x86 Family 6 Model 69 Stepping 1, GenuineIntel
+  Virtual Machine     : Java 1.8.0_121-b13 with Oracle Corporation Java HotSpot(TM) 64-Bit Server VM mixed mode
+  Window System       : Version 10.0 (Build 14393)
+
+Fault Count: 1
+
+
+Abnormal termination:
+std::terminate()
+
+Register State (captured):
+  RAX = 00000000108c3338  RBX = 0000000000000000
+  RCX = 00000000043ecd60  RDX = 0000000000000000
+  RSP = 00000000043ecce0  RBP = 00000000043edb50
+  RSI = 00000000108c3338  RDI = 00000000108c3338
+ 
+   R8 = 00004be371c98faf   R9 = 00007ffadeed0000
+  R10 = 00000000107fb0a8  R11 = 00000000108b32e0
+  R12 = 00000000043ed3a0  R13 = 00000000108b3268
+  R14 = 00000000108c32b8  R15 = 0000000000000000
+ 
+  RIP = 00000000106bbbaa  EFL = 00000202
+ 
+   CS = 0033   FS = 0053   GS = 002b
+
+Stack Trace (captured):
+[  0] 0x00000000106b5e83                              bin\win64\libmwfl.dll+00155267 foundation::core::diag::thread_context::unspecified_bool+00000051
+[  1] 0x00000000106b4478                              bin\win64\libmwfl.dll+00148600 foundation::core::diag::stacktrace_base::capture+00000024
+[  2] 0x00000000106b79ce                              bin\win64\libmwfl.dll+00162254 foundation::core::diag::symbols::getSymbolAddress+00006494
+[  3] 0x00000000106ba807                              bin\win64\libmwfl.dll+00174087 foundation::core::diag::disable_terminate_dialog+00000887
+[  4] 0x00000000152ef5f5                                  bin\win64\mcr.dll+00652789 mnShutdownMCR+00023605
+[  5] 0x00000000152ef281                                  bin\win64\mcr.dll+00651905 mnShutdownMCR+00022721
+[  6] 0x00000000152ef358                                  bin\win64\mcr.dll+00652120 mnShutdownMCR+00022936
+[  7] 0x00000000152ec5c9                                  bin\win64\mcr.dll+00640457 mnShutdownMCR+00011273
+[  8] 0x00000000152f03b8                                  bin\win64\mcr.dll+00656312 mnSetSegvServiceUrl+00000168
+[  9] 0x00007ffae4e7e0b8                   C:\WINDOWS\System32\ucrtbase.dll+00450744 terminate+00000024
+[ 10] 0x00007ffadeed1fb4 C:\Program Files\MATLAB\R2017b_bash\bin\win64\VCRUNTIME140.dll+00008116 memchr+00002164
+[ 11] 0x00007ffadeed1aee C:\Program Files\MATLAB\R2017b_bash\bin\win64\VCRUNTIME140.dll+00006894 memchr+00000942
+[ 12] 0x00007ffadeedb940 C:\Program Files\MATLAB\R2017b_bash\bin\win64\VCRUNTIME140.dll+00047424 _CxxFrameHandler3+00000144
+[ 13] 0x00007ffae888ab6d                      C:\WINDOWS\SYSTEM32\ntdll.dll+00699245 _chkstk+00000285
+[ 14] 0x00007ffae8829933                      C:\WINDOWS\SYSTEM32\ntdll.dll+00301363 RtlImageNtHeaderEx+00001155
+[ 15] 0x00007ffae882b649                      C:\WINDOWS\SYSTEM32\ntdll.dll+00308809 RtlRaiseException+00000729
+[ 16] 0x00007ffae4f43c58                 C:\WINDOWS\System32\KERNELBASE.dll+00212056 RaiseException+00000104
+[ 17] 0x00007ffadeed2a10 C:\Program Files\MATLAB\R2017b_bash\bin\win64\VCRUNTIME140.dll+00010768 _FrameUnwindFilter+00001168
+[ 18] 0x00007ffae888a163                      C:\WINDOWS\SYSTEM32\ntdll.dll+00696675 RtlCaptureContext+00000963
+[ 19] 0x000000002f489e3d                        bin\win64\pgo\mcos_impl.dll+00433725
+[ 20] 0x000000002f4899c0                        bin\win64\pgo\mcos_impl.dll+00432576
+[ 21] 0x000000002f48ad91                        bin\win64\pgo\mcos_impl.dll+00437649
+[ 22] 0x000000002f48be0e                        bin\win64\pgo\mcos_impl.dll+00441870
+[ 23] 0x00000000153c8f34                     bin\win64\pgo\m_dispatcher.dll+00036660 Mfh_MATLAB_fn::dispatch_fh+00000660
+[ 24] 0x000000002f48906c                        bin\win64\pgo\mcos_impl.dll+00430188
+[ 25] 0x0000000016029ddb                            bin\win64\pgo\m_lxe.dll+00630235 boost::serialization::singleton<boost::archive::detail::iserializer<boost::archive::binaryTerm_iarchive,MathWorks::lxe::ClosedAbstractionFunctionDescriptor> >::get_instance+00103371
+[ 26] 0x0000000016019c53                            bin\win64\pgo\m_lxe.dll+00564307 boost::serialization::singleton<boost::archive::detail::iserializer<boost::archive::binaryTerm_iarchive,MathWorks::lxe::ClosedAbstractionFunctionDescriptor> >::get_instance+00037443
+[ 27] 0x000000001601a29d                            bin\win64\pgo\m_lxe.dll+00565917 boost::serialization::singleton<boost::archive::detail::iserializer<boost::archive::binaryTerm_iarchive,MathWorks::lxe::ClosedAbstractionFunctionDescriptor> >::get_instance+00039053
+[ 28] 0x0000000015599f17                    bin\win64\pgo\m_interpreter.dll+00040727 inCallFcn+00000119
+[ 29] 0x000000000e3b923c                     bin\win64\libmwsl_services.dll+01151548 slsvFEVAL+00001356
+[ 30] 0x00000001789773db                        bin\win64\libmwsimulink.dll+09728987 sl::InterfaceDisplayJob::createUnitsUpdateJob+00271195
+[ 31] 0x000000013f5b6f33                    bin\win64\sl_engine_classes.dll+01011507 SLCompBD::~SLCompBD+00000051
+[ 32] 0x000000013f5bae8e                    bin\win64\sl_engine_classes.dll+01027726 SLCompBD::DestroyCompBD+00000030
+[ 33] 0x00000001794241c1                        bin\win64\libmwsimulink.dll+20922817 test::sl_startup+00494817
+[ 34] 0x00007ffadeedc220 C:\Program Files\MATLAB\R2017b_bash\bin\win64\VCRUNTIME140.dll+00049696 _C_specific_handler+00000560
+[ 35] 0x00007ffadeed29b2 C:\Program Files\MATLAB\R2017b_bash\bin\win64\VCRUNTIME140.dll+00010674 _FrameUnwindFilter+00001074
+[ 36] 0x00007ffae888a163                      C:\WINDOWS\SYSTEM32\ntdll.dll+00696675 RtlCaptureContext+00000963
+[ 37] 0x00000001789807ea                        bin\win64\libmwsimulink.dll+09766890 sl::InterfaceDisplayJob::createUnitsUpdateJob+00309098
+[ 38] 0x000000017897dca5                        bin\win64\libmwsimulink.dll+09755813 sl::InterfaceDisplayJob::createUnitsUpdateJob+00298021
+[ 39] 0x000000017922efd8                        bin\win64\libmwsimulink.dll+18870232 slstSetOutputPortRateID+00084968
+[ 40] 0x0000000179233cdd                        bin\win64\libmwsimulink.dll+18889949 slstSetOutputPortRateID+00104685
+[ 41] 0x0000000179239061                        bin\win64\libmwsimulink.dll+18911329 slstSetOutputPortRateID+00126065
+[ 42] 0x000000017923889c                        bin\win64\libmwsimulink.dll+18909340 slstSetOutputPortRateID+00124076
+[ 43] 0x0000000179271b98                        bin\win64\libmwsimulink.dll+19143576 slstSetOutputPortRateID+00358312
+[ 44] 0x000000017888243a                        bin\win64\libmwsimulink.dll+08725562 SlCoderDataClient::getCoderDataTypeMap+00074586
+[ 45] 0x0000000178690613                        bin\win64\libmwsimulink.dll+06686227 sl::simharness::SlSigDescriptor::getUsed+00102723
+[ 46] 0x00000000153dd31e                     bin\win64\pgo\m_dispatcher.dll+00119582 mdPathNotification::function_rebind_notification+00000158
+[ 47] 0x00000000153ca740                     bin\win64\pgo\m_dispatcher.dll+00042816 Mfunction_handle::dispatch+00000688
+[ 48] 0x0000000015fc921e                            bin\win64\pgo\m_lxe.dll+00234014
+[ 49] 0x0000000015fc5c05                            bin\win64\pgo\m_lxe.dll+00220165
+[ 50] 0x0000000016028137                            bin\win64\pgo\m_lxe.dll+00622903 boost::serialization::singleton<boost::archive::detail::iserializer<boost::archive::binaryTerm_iarchive,MathWorks::lxe::ClosedAbstractionFunctionDescriptor> >::get_instance+00096039
+[ 51] 0x0000000016026e59                            bin\win64\pgo\m_lxe.dll+00618073 boost::serialization::singleton<boost::archive::detail::iserializer<boost::archive::binaryTerm_iarchive,MathWorks::lxe::ClosedAbstractionFunctionDescriptor> >::get_instance+00091209
+[ 52] 0x000000001602f176                            bin\win64\pgo\m_lxe.dll+00651638 boost::serialization::singleton<boost::archive::detail::iserializer<boost::archive::binaryTerm_iarchive,MathWorks::lxe::ClosedAbstractionFunctionDescriptor> >::get_instance+00124774
+[ 53] 0x000000001602e868                            bin\win64\pgo\m_lxe.dll+00649320 boost::serialization::singleton<boost::archive::detail::iserializer<boost::archive::binaryTerm_iarchive,MathWorks::lxe::ClosedAbstractionFunctionDescriptor> >::get_instance+00122456
+[ 54] 0x0000000015fc113d                            bin\win64\pgo\m_lxe.dll+00201021
+[ 55] 0x0000000015fc11ea                            bin\win64\pgo\m_lxe.dll+00201194
+[ 56] 0x0000000015fc1209                            bin\win64\pgo\m_lxe.dll+00201225
+[ 57] 0x00000000153dc983                     bin\win64\pgo\m_dispatcher.dll+00117123 Mfh_file::dispatch_fh_impl+00000835
+[ 58] 0x00000000153dc62e                     bin\win64\pgo\m_dispatcher.dll+00116270 Mfh_file::dispatch_fh+00000062
+[ 59] 0x00000000153ca898                     bin\win64\pgo\m_dispatcher.dll+00043160 Mfunction_handle::dispatch+00001032
+[ 60] 0x0000000015fc921e                            bin\win64\pgo\m_lxe.dll+00234014
+[ 61] 0x0000000015fc5c05                            bin\win64\pgo\m_lxe.dll+00220165
+[ 62] 0x0000000015fcca26                            bin\win64\pgo\m_lxe.dll+00248358
+[ 63] 0x0000000015fcd633                            bin\win64\pgo\m_lxe.dll+00251443
+[ 64] 0x0000000015fcf675                            bin\win64\pgo\m_lxe.dll+00259701
+[ 65] 0x0000000015fceacf                            bin\win64\pgo\m_lxe.dll+00256719
+[ 66] 0x0000000015fceea2                            bin\win64\pgo\m_lxe.dll+00257698
+[ 67] 0x000000001602774b                            bin\win64\pgo\m_lxe.dll+00620363 boost::serialization::singleton<boost::archive::detail::iserializer<boost::archive::binaryTerm_iarchive,MathWorks::lxe::ClosedAbstractionFunctionDescriptor> >::get_instance+00093499
+[ 68] 0x000000001602f176                            bin\win64\pgo\m_lxe.dll+00651638 boost::serialization::singleton<boost::archive::detail::iserializer<boost::archive::binaryTerm_iarchive,MathWorks::lxe::ClosedAbstractionFunctionDescriptor> >::get_instance+00124774
+[ 69] 0x000000001602e868                            bin\win64\pgo\m_lxe.dll+00649320 boost::serialization::singleton<boost::archive::detail::iserializer<boost::archive::binaryTerm_iarchive,MathWorks::lxe::ClosedAbstractionFunctionDescriptor> >::get_instance+00122456
+[ 70] 0x00000000160196da                            bin\win64\pgo\m_lxe.dll+00562906 boost::serialization::singleton<boost::archive::detail::iserializer<boost::archive::binaryTerm_iarchive,MathWorks::lxe::ClosedAbstractionFunctionDescriptor> >::get_instance+00036042
+[ 71] 0x0000000016019041                            bin\win64\pgo\m_lxe.dll+00561217 boost::serialization::singleton<boost::archive::detail::iserializer<boost::archive::binaryTerm_iarchive,MathWorks::lxe::ClosedAbstractionFunctionDescriptor> >::get_instance+00034353
+[ 72] 0x0000000016019152                            bin\win64\pgo\m_lxe.dll+00561490 boost::serialization::singleton<boost::archive::detail::iserializer<boost::archive::binaryTerm_iarchive,MathWorks::lxe::ClosedAbstractionFunctionDescriptor> >::get_instance+00034626
+[ 73] 0x0000000015fba05d                            bin\win64\pgo\m_lxe.dll+00172125
+[ 74] 0x0000000015fb9fea                            bin\win64\pgo\m_lxe.dll+00172010
+[ 75] 0x000000001601a039                            bin\win64\pgo\m_lxe.dll+00565305 boost::serialization::singleton<boost::archive::detail::iserializer<boost::archive::binaryTerm_iarchive,MathWorks::lxe::ClosedAbstractionFunctionDescriptor> >::get_instance+00038441
+[ 76] 0x00000000155f5b57                    bin\win64\pgo\m_interpreter.dll+00416599 inEvalCmdWithLocalReturn+00000063
+[ 77] 0x00000000fb60de26                          bin\win64\libmwbridge.dll+00122406 mnParser+00001254
+[ 78] 0x000000001528bdb1                                  bin\win64\mcr.dll+00245169 mcr::runtime::setInterpreterThreadSingletonToCurrent+00029793
+[ 79] 0x000000001528ace5                                  bin\win64\mcr.dll+00240869 mcr::runtime::setInterpreterThreadSingletonToCurrent+00025493
+[ 80] 0x000000001528ad53                                  bin\win64\mcr.dll+00240979 mcr::runtime::setInterpreterThreadSingletonToCurrent+00025603
+[ 81] 0x000000001528b6e1                                  bin\win64\mcr.dll+00243425 mcr::runtime::setInterpreterThreadSingletonToCurrent+00028049
+[ 82] 0x00000000fd02cb27                                  bin\win64\iqm.dll+00641831 iqm::UserEvalPlugin::pre+00028951
+[ 83] 0x00000000fd039e0c                                  bin\win64\iqm.dll+00695820 iqm::UserEvalPlugin::pre+00082940
+[ 84] 0x00000000fd02722f                                  bin\win64\iqm.dll+00619055 iqm::UserEvalPlugin::pre+00006175
+[ 85] 0x00000000fd02cac6                                  bin\win64\iqm.dll+00641734 iqm::UserEvalPlugin::pre+00028854
+[ 86] 0x00000000fd027713                                  bin\win64\iqm.dll+00620307 iqm::UserEvalPlugin::pre+00007427
+[ 87] 0x00000000fd03c766                                  bin\win64\iqm.dll+00706406 iqm::UserEvalPlugin::pre+00093526
+[ 88] 0x00000000fd007fa7                                  bin\win64\iqm.dll+00491431 iqm::PackagedTaskPlugin::PackagedTaskPlugin+00000759
+[ 89] 0x00000000fd00876f                                  bin\win64\iqm.dll+00493423 iqm::PackagedTaskPlugin::execute+00000879
+[ 90] 0x00000000fd00802d                                  bin\win64\iqm.dll+00491565 iqm::PackagedTaskPlugin::PackagedTaskPlugin+00000893
+[ 91] 0x00000000fd0085b8                                  bin\win64\iqm.dll+00492984 iqm::PackagedTaskPlugin::execute+00000440
+[ 92] 0x00000000fcfdbd3a                                  bin\win64\iqm.dll+00310586 iqm::Iqm::setupIqmFcnPtrs+00079802
+[ 93] 0x00000000fcfdbc06                                  bin\win64\iqm.dll+00310278 iqm::Iqm::setupIqmFcnPtrs+00079494
+[ 94] 0x00000000fcfbf5be                                  bin\win64\iqm.dll+00193982 iqm::Iqm::deliver+00004046
+[ 95] 0x00000000fcfc0545                                  bin\win64\iqm.dll+00197957 iqm::Iqm::deliver+00008021
+[ 96] 0x00000001001234f1                        bin\win64\libmwservices.dll+01258737 services::system_events::PpeDispatchHook::dispatchOne+00021505
+[ 97] 0x0000000100128393                        bin\win64\libmwservices.dll+01278867 sysq::addProcessPendingEventsUnitTestHook+00002211
+[ 98] 0x0000000100128580                        bin\win64\libmwservices.dll+01279360 sysq::addProcessPendingEventsUnitTestHook+00002704
+[ 99] 0x0000000100129956                        bin\win64\libmwservices.dll+01284438 sysq::getCondition+00003462
+[100] 0x000000010012a996                        bin\win64\libmwservices.dll+01288598 svWS_ProcessPendingEvents+00000230
+[101] 0x000000001528c244                                  bin\win64\mcr.dll+00246340 mcr::runtime::setInterpreterThreadSingletonToCurrent+00030964
+[102] 0x000000001528c964                                  bin\win64\mcr.dll+00248164 mcr::runtime::setInterpreterThreadSingletonToCurrent+00032788
+[103] 0x0000000015282762                                  bin\win64\mcr.dll+00206690 mcr_process_events+00008818
+[104] 0x0000000011f622a5                             bin\win64\MVMLocal.dll+00271013 mvm_server::inproc::LocalFactory::terminate+00087717
+[105] 0x000
