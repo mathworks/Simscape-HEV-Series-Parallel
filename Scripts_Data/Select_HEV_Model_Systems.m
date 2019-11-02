@@ -1,5 +1,5 @@
 function Select_HEV_Model_Systems(HEV_Config_Name,HEV_Configs)
-% Copyright 2011-2018 The MathWorks, Inc.
+% Copyright 2011-2019 The MathWorks, Inc.
 
 CurrentPath = gcs;
 SlashInd = findstr(CurrentPath,'/');
@@ -16,18 +16,25 @@ systems_to_set = setdiff(fieldnames(HEV_Configs),{'Type' 'Sim_Time'});
 x = getfield(HEV_Configs(HEV_config_index),'Electrical');
 if(~strcmp(char(x.choice),'Empty'))
     %set_param(char(x.path),'BlockChoice',char(x.choice));
-    set_param(char(x.path),'OverrideUsingVariant',strrep(char(x.choice),' ','_'));
+    set_param(char(x.path),'popup_electricalvariant',char(x.choice));
 end
 
-for i=1:length(systems_to_set)
-    x = getfield(HEV_Configs(HEV_config_index),char(systems_to_set(i)));
-    if(~strcmp(char(x.choice),'Empty'))
-        %set_param(char(x.path),'BlockChoice',char(x.choice));
-        set_param(char(x.path),'OverrideUsingVariant',strrep(char(x.choice),' ','_'));
+x = getfield(HEV_Configs(HEV_config_index),'Electrical');
+b = getfield(HEV_Configs(HEV_config_index),'Battery');
+if(~strcmp(char(x.choice),'Empty'))
+    %set_param(char(x.path),'BlockChoice',char(x.choice));
+    set_param(char(x.path),'popup_batteryvariantsystem',char(b.choice));
+    if(~strcmpi(char(b.choice),'cells'))
+    set_param(char(x.path),'popup_batteryvariantdetailed',char(b.choice));
     end
 end
 
-%set_param(ModelName,'StopTime',num2str(HEV_Configs(HEV_config_index).Sim_Time));
+x = getfield(HEV_Configs(HEV_config_index),'Vehicle');
+if(~strcmp(char(x.choice),'Empty'))
+    %set_param(char(x.path),'BlockChoice',char(x.choice));
+    set_param(char(x.path),'LabelModeActiveChoice',char(x.choice));
+end
+
 
 
 

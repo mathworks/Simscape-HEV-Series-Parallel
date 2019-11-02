@@ -1,5 +1,5 @@
 %% ESTIMATE FUEL CONSUMPTION WITH MEASURED DATA
-% Copyright 2011-2018 The MathWorks, Inc.
+% Copyright 2011-2019 The MathWorks, Inc.
 % CONSTANTS
 gasoline_density_gpm3 = 750*1000; % Grams per cubic meter
 gallons_per_m3 = 264.172;         % gallons per cubic meter

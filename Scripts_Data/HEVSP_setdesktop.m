@@ -1,4 +1,4 @@
-% Copyright 2011-2018 The MathWorks, Inc.
+% Copyright 2011-2019 The MathWorks, Inc.
 
 set_param(bdroot,'Solver','ODE15s');
 HEV_Param.Control.Mode_Logic_TS = 0.1;

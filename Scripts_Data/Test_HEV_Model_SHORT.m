@@ -1,4 +1,4 @@
-% Copyright 2011-2018 The MathWorks, Inc.
+% Copyright 2011-2019 The MathWorks, Inc.
 
 expModel = 'HEV_SeriesParallel';
 open_system(expModel);
@@ -14,8 +14,8 @@ Batt_testInd = 1;
 Veh_testInd = 1;
 
 set_param([expModel '/Vehicle Dynamics'],'OverrideUsingVariant',VehVariants{Veh_testInd});
-set_param([expModel '/Electrical'],'OverrideUsingVariant',strrep(ModelVariants{MV_testInd},' ','_'));
-set_param([expModel '/Electrical/' ModelVariants{MV_testInd} '/Battery'],'OverrideUsingVariant',BattVariants{Batt_testInd});
+set_param([expModel '/Electrical'],'popup_electricalvariant',ModelVariants{MV_testInd});
+set_param([expModel '/Electrical'],'popup_batteryvariantsystem',BattVariants{Batt_testInd});
 
 set_param(bdroot,'FastRestart','on')
 for MV_ind = MV_testInd:MV_testInd
