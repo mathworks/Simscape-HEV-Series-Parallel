@@ -1,5 +1,5 @@
 % CLEANUP RT TEST DIR
-% Copyright 2011-2016 The MathWorks, Inc.
+% Copyright 2011-2017 The MathWorks, Inc.
 
 mdl = 'HEV_SeriesParallel';
 delete([mdl '*bio.m'])

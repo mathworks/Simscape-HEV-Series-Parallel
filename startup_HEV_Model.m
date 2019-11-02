@@ -1,20 +1,22 @@
-% Copyright 2011-2016 The MathWorks, Inc.
+% Copyright 2011-2017 The MathWorks, Inc.
 
 HEV_Model_HomeDir = pwd;
 addpath(pwd);
-addpath([pwd '/Libraries/Electrical']);
-addpath([pwd '/Libraries/Battery']);
-addpath([pwd '/Libraries/Vehicle']);
-addpath([pwd '/Images']);
-addpath([pwd '/Scripts_Data']);
-addpath([pwd '/Reports']);
-addpath([pwd '/Power_Quality']);
+addpath([pwd filesep 'Libraries' filesep 'Electrical']);
+addpath([pwd filesep 'Libraries' filesep 'Battery']);
+addpath([pwd filesep 'Libraries' filesep 'Vehicle']);
+%addpath([pwd filesep 'Libraries' filesep 'Animation']);
+addpath([pwd filesep 'Images']);
+addpath([pwd filesep 'Scripts_Data']);
+addpath([pwd filesep 'Reports']);
+addpath([pwd filesep 'Power_Quality']);
+addpath(genpath([pwd filesep 'SimResults']));
 
 HEV_Model_PARAM
 
 % FOR VARIABLE INERTIA (PCT TESTS)
-if(exist('Libraries\Vehicle')==7)
-    cd Libraries\Vehicle
+if(exist(['Libraries' filesep 'Vehicle'])==7)
+    cd(['Libraries' filesep 'Vehicle'])
     if((exist('+TunableMech')==7) && ~exist('TunableMech_lib'))
         disp('Building Custom Simscape Library...');
         ssc_build TunableMech
