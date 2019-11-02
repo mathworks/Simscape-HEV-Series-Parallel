@@ -9,6 +9,9 @@ Select_HEV_Model_Systems('Sys BC VS',HEV_Configs);
 set_param(mdl,'StopFcn',['%' get_param(mdl,'StopFcn')]);
 set_param([mdl '/Vehicle Dynamics/Simple'],'mass','HEV_Vehicle_Mass');
 set_param([mdl '/SLRT Scope'],'Commented','on');
+set_param(bdroot,'SimscapeLogType','none');
+Drive_Cycle_Num = 1; 
+set_param(mdl,'StopTime',num2str(eval(['UrbanCycle' num2str(Drive_Cycle_Num) '.time(end)'])));
 save_system(mdl);
 
 %% BUILD TARGET
@@ -57,11 +60,12 @@ stopfn_str = get_param(mdl,'StopFcn');
 set_param(mdl,'StopFcn',stopfn_str(2:end));
 set_param([mdl '/Vehicle Dynamics/Simple'],'mass','HEV_Param.Vehicle.Mass');
 set_param([mdl '/SLRT Scope'],'Commented','off');
+set_param(bdroot,'SimscapeLogType','all');
 Select_HEV_Model_Systems('Sys BD VF',HEV_Configs);
 save_system(mdl);
 bdclose(mdl);
 delete('*.mex*')
 !rmdir slprj /S/Q
 
-% Copyright 2013-2015 The MathWorks(TM), Inc.
+% Copyright 2013-2016 The MathWorks(TM), Inc.
 

@@ -1,4 +1,4 @@
-% Copyright 2011-2015 The MathWorks, Inc.
+% Copyright 2011-2016 The MathWorks, Inc.
 
 %disp('DEFINING PARAMETERS...');
 % HEV SERIES PARALLEL PARAMETERS

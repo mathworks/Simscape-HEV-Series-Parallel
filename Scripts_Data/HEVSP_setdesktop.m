@@ -1,3 +1,5 @@
+% Copyright 2011-2016 The MathWorks, Inc.
+
 set_param(bdroot,'Solver','ODE15s');
 HEV_Param.Control.Mode_Logic_TS = 0.1;
 

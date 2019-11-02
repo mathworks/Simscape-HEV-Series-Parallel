@@ -1,5 +1,5 @@
 function plot_HEV_Data(FigID,SubPlID,DataStr,SigID,ValID,titlestr,PlotChoice)
-% Copyright 2011-2015 The MathWorks, Inc.
+% Copyright 2011-2016 The MathWorks, Inc.
 
 SP_style = 'b';
 SY_style = 'b-';

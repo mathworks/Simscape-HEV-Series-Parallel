@@ -1,5 +1,5 @@
 %% OPEN AND CONFIGURE MODEL
-% Copyright 2011-2015 The MathWorks, Inc.
+% Copyright 2011-2016 The MathWorks, Inc.
 
 mdl = 'HEV_SeriesParallel';
 open_system(mdl);
@@ -9,6 +9,9 @@ HEV_Param.Control.Mode_Logic_TS = 0.1;
 %% BUILD STANDALONE EXECUTABLE
 disp(['Building standalone executable for ' mdl]);
 set_param(bdroot,'SystemTargetFile','rsim.tlc')
+set_param(bdroot,'SimscapeLogType','none');
+set_param(bdroot,'DefaultParameterBehavior','Inlined');
+set_param([bdroot '/SLRT Scope'],'Commented','on');
 slbuild(mdl);
 disp(['Finished building standalone executable for ' mdl '.mdl']);
 
@@ -73,6 +76,5 @@ for i=1:size(rtw_dirs,1)
 end
 !rmdir slprj /S/Q
 set_param(bdroot,'SystemTargetFile','grt.tlc')
-
-
-
+set_param([bdroot '/SLRT Scope'],'Commented','off');
+set_param(bdroot,'DefaultParameterBehavior','Tunable');

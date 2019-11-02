@@ -1,4 +1,4 @@
-% Copyright 2011-2015 The MathWorks, Inc.
+% Copyright 2011-2016 The MathWorks, Inc.
 
 expModel = 'HEV_SeriesParallel';
 open_system(expModel);

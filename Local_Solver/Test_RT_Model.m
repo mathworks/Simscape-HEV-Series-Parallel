@@ -1,10 +1,11 @@
 %% OPEN MODEL
-% Copyright 2011-2015 The MathWorks, Inc.
+% Copyright 2011-2016 The MathWorks, Inc.
 
 mdl = 'HEV_SeriesParallel';
 open_system(mdl);
 Select_HEV_Model_Systems('Sys BC VS',HEV_Configs);
 set_param(mdl,'StopTime','30');
+Drive_Cycle_Num = 1;
 
 set_param(mdl,'SimscapeLogType','None');
 set_param(mdl,'SignalLogging','off');

@@ -1,3 +1,5 @@
+% Copyright 2011-2016 The MathWorks, Inc.
+
 tvar_Nonlinear_Iterations = '3';
 tvar_StepSize = '0.005';
 Select_HEV_Model_Systems('Sys BC VS',HEV_Configs);

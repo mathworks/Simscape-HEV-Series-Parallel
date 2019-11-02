@@ -1,5 +1,5 @@
 function Select_HEV_Model_Systems(HEV_Config_Name,HEV_Configs)
-% Copyright 2011-2015 The MathWorks, Inc.
+% Copyright 2011-2016 The MathWorks, Inc.
 
 CurrentPath = gcs;
 SlashInd = findstr(CurrentPath,'/');
