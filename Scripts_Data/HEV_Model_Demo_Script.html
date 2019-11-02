@@ -1,0 +1,113 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>HEV Model Demo Script</title><meta name="generator" content="MATLAB 7.12"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2011-04-15"><meta name="DC.source" content="HEV_Model_Demo_Script.m"><style type="text/css">
+
+body {
+  background-color: white;
+  margin:10px;
+}
+
+h1 {
+  color: #990000; 
+  font-size: x-large;
+}
+
+h2 {
+  color: #990000;
+  font-size: medium;
+}
+
+/* Make the text shrink to fit narrow windows, but not stretch too far in 
+wide windows. */ 
+p,h1,h2,div.content div {
+  max-width: 600px;
+  /* Hack for IE6 */
+  width: auto !important; width: 600px;
+}
+
+pre.codeinput {
+  background: #EEEEEE;
+  padding: 10px;
+}
+@media print {
+  pre.codeinput {word-wrap:break-word; width:100%;}
+} 
+
+span.keyword {color: #0000FF}
+span.comment {color: #228B22}
+span.string {color: #A020F0}
+span.untermstring {color: #B20000}
+span.syscmd {color: #B28C00}
+
+pre.codeoutput {
+  color: #666666;
+  padding: 10px;
+}
+
+pre.error {
+  color: red;
+}
+
+p.footer {
+  text-align: right;
+  font-size: xx-small;
+  font-weight: lighter;
+  font-style: italic;
+  color: gray;
+}
+
+  </style></head><body><div class="content"><h1>HEV Model Demo Script</h1><p>
+<span style="font-family:Arial">
+<span style="font-size:10pt">
+<tr><a><b><u>Model</u></b></a><br>
+<tr>1.  <a href="matlab:open_system('HEV_SeriesParallel');">Open HEV Model</a><br>
+<tr>2.  <a href="matlab:Test_HEV_Model_SHORT;">Run Drive Cycles</a><br>
+<tr>3.  <a href="matlab:cd([HEV_Model_HomeDir '/Fuel_Consumption']);edit Create_Fuel_Consumption_LUT;">Estimate Fuel Economy With Measured Data</a><br>
+<br>
+<tr><a><b><u>Simulate</u></b></a><br>
+<tr>4. <a href="matlab:cd([HEV_Model_HomeDir '/PCT']);edit HEV_Model_PCT_Sim;HEV_Model_PCT;">Distribute Simulations Using Parallel Computing</a><br>
+<tr>5.  Analyze and Document: <a href="matlab:open('HEV_Model_Report_SHORT.html');">View Report</a>, <a href="matlab:cd([HEV_Model_HomeDir '/Reports']);open('HEV_Model_Report_SHORT.rpt');">Generate Report</a><br>
+<tr>6.  Power Quality Plots: <a href="matlab:edit DC_Power_Quality_Analysis;">Create Plots</a><br>
+<br>
+<tr><a><b><u>Deploy</u></b></a><br>
+<tr>7. <a href="matlab:cd([HEV_Model_HomeDir '/Local_Solver']);edit Test_RT_Model">Improve Simulation Performance With Local Solvers</a><br>
+<tr>8. <a href="matlab:cd([HEV_Model_HomeDir '/RSIM']);edit HEV_Model_RSIM">Deploy Simulation As a Standalone Executable</a><br>
+</style>
+</style>
+</p><p>Copyright 2011 The MathWorks&#8482;, Inc.</p><p class="footer"><br>
+      Published with MATLAB&reg; 7.12<br></p></div><!--
+##### SOURCE BEGIN #####
+%% HEV Model Demo Script
+%
+% <html>
+% <span style="font-family:Arial">
+% <span style="font-size:10pt">
+% <tr><a><b><u>Model</u></b></a><br>
+% <tr>1.  <a href="matlab:open_system('HEV_SeriesParallel');">Open HEV Model</a><br>
+% <tr>2.  <a href="matlab:Test_HEV_Model_SHORT;">Run Drive Cycles</a><br>
+% <tr>3.  <a href="matlab:cd([HEV_Model_HomeDir '/Fuel_Consumption']);edit Create_Fuel_Consumption_LUT;">Estimate Fuel Economy With Measured Data</a><br>
+% <br>
+% <tr><a><b><u>Simulate</u></b></a><br>
+% <tr>4. <a href="matlab:cd([HEV_Model_HomeDir '/PCT']);edit HEV_Model_PCT_Sim;HEV_Model_PCT;">Distribute Simulations Using Parallel Computing</a><br>
+% <tr>5.  Analyze and Document: <a href="matlab:open('HEV_Model_Report_SHORT.html');">View Report</a>, <a href="matlab:cd([HEV_Model_HomeDir '/Reports']);open('HEV_Model_Report_SHORT.rpt');">Generate Report</a><br>
+% <tr>6.  Power Quality Plots: <a href="matlab:edit DC_Power_Quality_Analysis;">Create Plots</a><br>
+% <br>
+% <tr><a><b><u>Deploy</u></b></a><br>
+% <tr>7. <a href="matlab:cd([HEV_Model_HomeDir '/Local_Solver']);edit Test_RT_Model">Improve Simulation Performance With Local Solvers</a><br>
+% <tr>8. <a href="matlab:cd([HEV_Model_HomeDir '/RSIM']);edit HEV_Model_RSIM">Deploy Simulation As a Standalone Executable</a><br>
+% </style>
+% </style>
+% </html>
+% 
+% Copyright 2011 The MathWorks(TM), Inc.
+
+
+
+##### SOURCE END #####
+--></body></html>

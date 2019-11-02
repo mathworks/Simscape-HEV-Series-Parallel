@@ -1,0 +1,39 @@
+component VariableInertia
+% Variable Inertia
+% The block represents an ideal mechanical rotational inertia.
+%
+% The block has one mechanical rotational conserving port 
+% and one physical signal port to define the inertia value.
+%
+% The inertia is defined via an input signal.  If the inertia
+% is defined as a Simulink parameter, it can be tuned without
+% regenerating C code.
+%
+% Copyright 2005-2008 The MathWorks, Inc.
+
+  nodes
+    I = foundation.mechanical.rotational.rotational; % :top
+  end
+
+  inputs
+      inertia = { 0.01, 'kg*m^2' };      % I:bottom
+  end
+  
+  parameters
+    initial_velocity = { 0, 'rad/s' }; % Initial velocity
+  end
+
+  variables
+    t = { 0, 'N*m' };
+  end
+
+  function setup
+    through( t, I.t, [] );
+    I.w = initial_velocity;
+  end
+  
+  equations
+    t == inertia * I.w.der;
+  end
+   
+end
