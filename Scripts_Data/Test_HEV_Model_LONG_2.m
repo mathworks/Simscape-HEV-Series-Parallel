@@ -14,12 +14,12 @@ VehVariants = {'Simple' 'Full'};
 % SimDuration = [max(UrbanCycle1.time) max(UrbanCycle2.time) max(UrbanCycle3.time) max(UrbanCycle4.time) max(UrbanCycle5.time)];
 %SimDuration = [50 50 50];
 % SimDuration = [0.01 0.01 0.01 0.01 0.01];
-%SimDuration = [2 2 2 2 2];
+SimDuration = [2 2 2 2 2];
 
 % FOR POWER QUALITY TESTS
 %SimDuration = [10 10 10];
 % SimDuration = [13 13 13];
-SimDuration = [0.01 0.01 0.01];
+% SimDuration = [0.01 0.01 0.01];
 
 for EFF_ind = 1:length(EffVariants)
     PlanGear_h = find_system(bdroot,'Name','Planetary Gear');
