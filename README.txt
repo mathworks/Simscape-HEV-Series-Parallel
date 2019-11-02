@@ -2,14 +2,9 @@ README file for HEV_SeriesParallel demonstration
 Steve Miller, updated 2017
 Copyright 2011-2019 The MathWorks, Inc.
 
-To start this demonstration, run startup_HEV_Model.m
+To start this demonstration, open project HEV_SeriesParallel.prj
 This will bring you to the simplest configuration of the full vehicle.
 Look at the slides to see all of the available configurations.
-
-For R2011a, 
-  1. This model has been updated to use the Simscape-based driveline components.
-  2. You can adjust the efficiency of the planetary gear
-  3. There is a fuel economy calculation, and you can show how we imported data to make this calculation 
 
 There are a number of things to be aware of with this demonstration.
   1. Configurations

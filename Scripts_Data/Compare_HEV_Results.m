@@ -1,10 +1,10 @@
 % Copyright 2011-2019 The MathWorks, Inc.
 
 % SELECT SIMULATION RESULTS TO BE COMPARED
-VarSetStr = 'SM';
+VarSetStr = 'DSM';
 BattStr = 'P';
 VehStr = 'S';
-DCycle = '2';
+DCycle = '1';
 EffInd = '1';
 
 % REST OF FILE SHOULD NOT CHANGE
@@ -21,7 +21,7 @@ for i=1:length(VarSetStr)
     MV_str = char(ModelVariants(MV_ind));
     MV_name = strrep(MV_str,' ','_');
    
-    FileName = [MV_name '_DATA_UC' DCycle '_Veh' num2str(VehInd) '_Batt' num2str(BattInd)}]; 
+    FileName = [MV_name '_DATA_UC' DCycle '_Veh' num2str(VehInd) '_Batt' num2str(BattInd)]; 
     %FileName = [MV_name '_DATA_UC' DCycle '_Veh' num2str(VehInd) '_Batt' num2str(BattInd) '_' EffVariants{str2num(EffInd)}]; 
     
     disp(FileName)
@@ -31,18 +31,37 @@ end
 plot_HEV_Data(1,[3 1 1],'Car',4,1,'Vehicle Speed (kph)',VarSetStr);
 plot_HEV_Data(1,[3 1 2],'Motor',2,1,'Motor Speed (RPM)',VarSetStr);
 plot_HEV_Data(1,[3 1 3],'Generator',2,1,'Generator Speed (RPM)',VarSetStr);
+sub_h(1) = subplot(3,1,1); ylabel('Speed (kph)');
+sub_h(2) = subplot(3,1,2); ylabel('Speed (RPM)');
+sub_h(3) = subplot(3,1,3); xlabel('Time (s)'); ylabel('Speed (RPM)');
+linkaxes(sub_h,'x'); clear sub_h
+
 
 plot_HEV_Data(2,[2 1 1],'Electrical',2,2,'Battery Voltage',VarSetStr);
 plot_HEV_Data(2,[2 1 2],'Electrical',2,1,'DC Bus Voltage',VarSetStr);
+sub_h(1) = subplot(2,1,1); ylabel('Voltage (V)');
+sub_h(2) = subplot(2,1,2); ylabel('Voltage (V)'); xlabel('Time (s)'); 
+linkaxes(sub_h,'x'); clear sub_h
 
 plot_HEV_Data(3,[2 1 1],'Electrical',3,2,'Battery Current',VarSetStr);
 plot_HEV_Data(3,[2 1 2],'Electrical',3,3,'Generator Current',VarSetStr);
-plot_HEV_Data(3,[3 1 1],'Electrical',3,2,'Battery Current',VarSetStr);
-plot_HEV_Data(3,[3 1 2],'Electrical',3,3,'Generator Current',VarSetStr);
-plot_HEV_Data(3,[3 1 3],'Electrical',3,1,'Motor Current',VarSetStr);
+sub_h(1) = subplot(2,1,1); ylabel('Current (A)');
+sub_h(2) = subplot(2,1,2); ylabel('Current (A)'); xlabel('Time (s)'); 
+linkaxes(sub_h,'x'); clear sub_h
 
-plot_HEV_Data(4,[2 1 1],'Generator',3,1,'Generator Torque',VarSetStr);
-plot_HEV_Data(4,[2 1 2],'Motor',3,1,'Motor Torque',VarSetStr);
+plot_HEV_Data(4,[3 1 1],'Electrical',3,2,'Battery Current',VarSetStr);
+plot_HEV_Data(4,[3 1 2],'Electrical',3,3,'Generator Current',VarSetStr);
+plot_HEV_Data(4,[3 1 3],'Electrical',3,1,'Motor Current',VarSetStr);
+sub_h(1) = subplot(3,1,1); ylabel('Current (A)');
+sub_h(2) = subplot(3,1,2); ylabel('Current (A)');
+sub_h(3) = subplot(3,1,3); ylabel('Current (A)'); xlabel('Time (s)'); 
+linkaxes(sub_h,'x'); clear sub_h
+
+plot_HEV_Data(5,[2 1 1],'Generator',3,1,'Generator Torque',VarSetStr);
+plot_HEV_Data(5,[2 1 2],'Motor',3,1,'Motor Torque',VarSetStr);
+sub_h(1) = subplot(2,1,1); ylabel('Torque (Nm)');
+sub_h(2) = subplot(2,1,2); ylabel('Torque (Nm)'); xlabel('Time (s)'); 
+linkaxes(sub_h,'x'); clear sub_h
 
 %{
 plot_HEV_Data(6,[2 1 1],'Electrical',2,2,'Battery Voltage',VarSetStr);

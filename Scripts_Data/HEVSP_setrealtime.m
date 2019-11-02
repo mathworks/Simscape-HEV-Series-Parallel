@@ -2,7 +2,7 @@
 
 tvar_Nonlinear_Iterations = '3';
 tvar_StepSize = '0.005';
-Select_HEV_Model_Systems('Sys BC VS',HEV_Configs);
+Select_HEV_Model_Systems(mdl,'Sys BC VS',HEV_Configs);
 tvar_LocalSolver = 'NE_BACKWARD_EULER_ADVANCER';
 
 % Do not run script that autoconfigures solver settings based on variants

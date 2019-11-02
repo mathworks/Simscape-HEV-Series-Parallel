@@ -1,5 +1,5 @@
 % Copyright 2014-2019 The MathWorks(TM), Inc.
-Select_HEV_Model_Systems('Sys BC VS',HEV_Configs);
+Select_HEV_Model_Systems(mdl,'Sys BC VS',HEV_Configs);
 set_param([mdl '/Vehicle Dynamics/Simple'],'LinkStatus','inactive')
 HEV_Vehicle_Mass = 1600;
 set_param([mdl '/Vehicle Dynamics/Simple'],'mass','HEV_Vehicle_Mass');

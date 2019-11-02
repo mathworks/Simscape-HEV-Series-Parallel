@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>HEV Model Demo Script</title><meta name="generator" content="MATLAB 9.6"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2019-03-05"><meta name="DC.source" content="HEV_Model_Demo_Script.m"><style type="text/css">
+      --><title>HEV Model Demo Script</title><meta name="generator" content="MATLAB 9.7"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2019-09-15"><meta name="DC.source" content="HEV_Model_Demo_Script.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -72,19 +72,20 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 <tr><b><u>Model</u></b><br>
 <tr>1.  <a href="matlab:open_system('HEV_SeriesParallel');">Open HEV Model</a><br>
 <tr>2.  <a href="matlab:Test_HEV_Model_SHORT;">Run Drive Cycles</a><br>
-<tr>3.  <a href="matlab:cd([HEV_Model_HomeDir '/Fuel_Consumption']);edit Create_Fuel_Consumption_LUT;">Estimate Fuel Economy With Measured Data</a><br>
+<tr>3.  <a href="matlab:cd(fileparts(which('Create_Fuel_Consumption_LUT.m')));edit Create_Fuel_Consumption_LUT;">Estimate Fuel Economy With Measured Data</a><br>
 <br>
 <tr><b><u>Simulate</u></b><br>
-<tr>4. <a href="matlab:cd([HEV_Model_HomeDir '/PCT']);edit HEV_Model_PCT_Sim;HEV_SeriesParallel;">Distribute Simulations Using Parallel Computing</a><br>
-<tr>5.  Analyze and Document: <a href="matlab:open('HEV_Model_Report_SHORT.html');">View Report</a>, <a href="matlab:cd([HEV_Model_HomeDir '/Reports']);open('HEV_Model_Report_SHORT.rpt');">Generate Report</a><br>
-<tr>6.  Power Quality Plots: <a href="matlab:edit DC_Power_Quality_Analysis;">Create Plots</a><br>
+<tr>4. <a href="matlab:cd(fileparts(which('HEV_Model_PCT_Sim.m')));edit HEV_Model_PCT_Sim;HEV_SeriesParallel;">Distribute Simulations Using Parallel Computing</a><br>
+<tr>5.  Test and Analyze <a href="matlab:open('HEV_MODEL_TestManager.mldatx');">Test Case Management</a><br>
+<tr>6.  Document: <a href="matlab:open('HEV_Model_Report_SHORT.html');">View Report</a>, <a href="matlab:cd(fileparts(which('HEV_Model_Report_SHORT.rpt')));open('HEV_Model_Report_SHORT.rpt');">Generate Report</a><br>
+<tr>7.  Power Quality Plots: <a href="matlab:edit DC_Power_Quality_Analysis;">Create Plots</a><br>
 <br>
 <tr><b><u>Deploy</u></b><br>
-<tr>7. <a href="matlab:cd([HEV_Model_HomeDir '/Local_Solver']);edit Test_RT_Model">Improve Simulation Performance With Local Solvers</a><br>
-<tr>8. <a href="matlab:cd([HEV_Model_HomeDir '/RSIM']);edit HEV_Model_RSIM">Deploy Simulation As a Standalone Executable</a><br>
+<tr>8. <a href="matlab:cd(fileparts(which('Test_RT_Model.m')));edit Test_RT_Model">Improve Simulation Performance With Local Solvers</a><br>
+<tr>9. <a href="matlab:cd(fileparts(which('HEV_Model_RSIM.m')));edit HEV_Model_RSIM">Deploy Simulation As a Standalone Executable</a><br>
 </style>
 </style>
-</p><p>Copyright 2011-2019 The MathWorks&#8482;, Inc.</p><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2019a</a><br></p></div><!--
+</p><p>Copyright 2011-2019 The MathWorks&#8482;, Inc.</p><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2019b</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 %% HEV Model Demo Script
 %
@@ -94,16 +95,17 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 % <tr><b><u>Model</u></b><br>
 % <tr>1.  <a href="matlab:open_system('HEV_SeriesParallel');">Open HEV Model</a><br>
 % <tr>2.  <a href="matlab:Test_HEV_Model_SHORT;">Run Drive Cycles</a><br>
-% <tr>3.  <a href="matlab:cd([HEV_Model_HomeDir '/Fuel_Consumption']);edit Create_Fuel_Consumption_LUT;">Estimate Fuel Economy With Measured Data</a><br>
+% <tr>3.  <a href="matlab:cd(fileparts(which('Create_Fuel_Consumption_LUT.m')));edit Create_Fuel_Consumption_LUT;">Estimate Fuel Economy With Measured Data</a><br>
 % <br>
 % <tr><b><u>Simulate</u></b><br>
-% <tr>4. <a href="matlab:cd([HEV_Model_HomeDir '/PCT']);edit HEV_Model_PCT_Sim;HEV_SeriesParallel;">Distribute Simulations Using Parallel Computing</a><br>
-% <tr>5.  Analyze and Document: <a href="matlab:open('HEV_Model_Report_SHORT.html');">View Report</a>, <a href="matlab:cd([HEV_Model_HomeDir '/Reports']);open('HEV_Model_Report_SHORT.rpt');">Generate Report</a><br>
-% <tr>6.  Power Quality Plots: <a href="matlab:edit DC_Power_Quality_Analysis;">Create Plots</a><br>
+% <tr>4. <a href="matlab:cd(fileparts(which('HEV_Model_PCT_Sim.m')));edit HEV_Model_PCT_Sim;HEV_SeriesParallel;">Distribute Simulations Using Parallel Computing</a><br>
+% <tr>5.  Test and Analyze <a href="matlab:open('HEV_MODEL_TestManager.mldatx');">Test Case Management</a><br>
+% <tr>6.  Document: <a href="matlab:open('HEV_Model_Report_SHORT.html');">View Report</a>, <a href="matlab:cd(fileparts(which('HEV_Model_Report_SHORT.rpt')));open('HEV_Model_Report_SHORT.rpt');">Generate Report</a><br>
+% <tr>7.  Power Quality Plots: <a href="matlab:edit DC_Power_Quality_Analysis;">Create Plots</a><br>
 % <br>
 % <tr><b><u>Deploy</u></b><br>
-% <tr>7. <a href="matlab:cd([HEV_Model_HomeDir '/Local_Solver']);edit Test_RT_Model">Improve Simulation Performance With Local Solvers</a><br>
-% <tr>8. <a href="matlab:cd([HEV_Model_HomeDir '/RSIM']);edit HEV_Model_RSIM">Deploy Simulation As a Standalone Executable</a><br>
+% <tr>8. <a href="matlab:cd(fileparts(which('Test_RT_Model.m')));edit Test_RT_Model">Improve Simulation Performance With Local Solvers</a><br>
+% <tr>9. <a href="matlab:cd(fileparts(which('HEV_Model_RSIM.m')));edit HEV_Model_RSIM">Deploy Simulation As a Standalone Executable</a><br>
 % </style>
 % </style>
 % </html>
