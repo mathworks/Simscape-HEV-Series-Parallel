@@ -20,6 +20,6 @@
 % </style>
 % </html>
 % 
-% Copyright 2014 The MathWorks(TM), Inc.
+% Copyright 2011-2014 The MathWorks(TM), Inc.
 
 

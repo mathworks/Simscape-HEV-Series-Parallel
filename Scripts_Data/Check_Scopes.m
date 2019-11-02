@@ -1,4 +1,4 @@
-% Copyright 2011 The MathWorks, Inc.
+% Copyright 2011-2014 The MathWorks, Inc.
 
 sc_h = find_system(bdroot,'FollowLinks','on','LookUnderMasks','on','Grid','on');
 

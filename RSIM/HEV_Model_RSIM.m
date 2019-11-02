@@ -1,15 +1,15 @@
 %% OPEN AND CONFIGURE MODEL
-% Copyright 2011 The MathWorks, Inc.
+% Copyright 2011-2014 The MathWorks, Inc.
 
 mdl = 'HEV_SeriesParallel';
 open_system(mdl);
-Select_HEV_Model_Systems('Sys BC VS',HEV_Configs);
+Select_HEV_Model_Systems('Sys BC VF',HEV_Configs);
 HEV_Param.Control.Mode_Logic_TS = 0.1;
 
 %% BUILD STANDALONE EXECUTABLE
-disp(['Building standalone executable for ' mdl '.mdl']);
+disp(['Building standalone executable for ' mdl]);
 set_param(bdroot,'SystemTargetFile','rsim.tlc')
-rtwbuild(mdl);
+slbuild(mdl);
 disp(['Finished building standalone executable for ' mdl '.mdl']);
 
 %% CREATE RSIM PARAMETER FILES

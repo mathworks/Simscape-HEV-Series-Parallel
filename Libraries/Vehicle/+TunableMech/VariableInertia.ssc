@@ -9,7 +9,7 @@ component VariableInertia
 % is defined as a Simulink parameter, it can be tuned without
 % regenerating C code.
 %
-% Copyright 2005-2008 The MathWorks, Inc.
+% Copyright 2005-2014 The MathWorks, Inc.
 
   nodes
     I = foundation.mechanical.rotational.rotational; % :top

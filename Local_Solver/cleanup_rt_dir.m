@@ -1,5 +1,5 @@
 % CLEANUP RT TEST DIR
-% Copyright 2011 The MathWorks, Inc.
+% Copyright 2011-2014 The MathWorks, Inc.
 
 delete('*_Solverbio.m')
 delete('*_Solverpt.m')

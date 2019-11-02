@@ -1,5 +1,5 @@
 %% SETUP MODEL FOR RSIM
-% Copyright 2009 The MathWorks(TM), Inc.
+% Copyright 2009-2014 The MathWorks(TM), Inc.
 
 HEV_Vehicle_Mass = HEV_Param.Vehicle.Mass;
 HEV_Model_Driver_Ki = 0.04;

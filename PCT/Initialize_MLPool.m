@@ -1,5 +1,12 @@
-% Copyright 2011 The MathWorks, Inc.
+% Copyright 2013-2014 The MathWorks, Inc.
+TempSimSettings = SimSettings;
+Temppool = gcp;
+Temppoolsize = Temppool.NumWorkers;
 
-parfor i = 1:2
-    out{i} = sim(mdl, SimSettings{i});
+for i = 1:Temppoolsize
+    TempSimSettings{i}.StopTime = '0.01';
+end
+
+parfor i = 1:Temppoolsize
+    out{i} = sim(mdl, TempSimSettings{i});
 end

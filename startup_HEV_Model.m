@@ -1,10 +1,11 @@
-% Copyright 2014 The MathWorks, Inc.
+% Copyright 2011-2014 The MathWorks, Inc.
 
 HEV_Model_HomeDir = pwd;
 addpath(pwd);
 addpath([pwd '/Libraries/Electrical']);
 addpath([pwd '/Libraries/Battery']);
 addpath([pwd '/Libraries/Vehicle']);
+%addpath([pwd '/Libraries/Animation']);
 addpath([pwd '/Images']);
 addpath([pwd '/Scripts_Data']);
 addpath([pwd '/Reports']);
@@ -24,6 +25,9 @@ if(exist('Libraries\Vehicle')==7)
     cd(HEV_Model_HomeDir)
 end
 
+% FOR EXISTING ARROW-ANIMATION
+opengl software
+addpath([pwd '\GUI_Files']);
 open('HEV_Model_Demo_Script.html')
 HEV_SeriesParallel
 

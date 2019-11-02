@@ -1,4 +1,4 @@
-% Copyright 2011 The MathWorks, Inc.
+% Copyright 2011-2014 The MathWorks, Inc.
 
 hndl = plot3(FCData.Speed_RPM, FCData.Trq_Nm, FCData.FuelUse_gps,'o','MarkerFaceColor','blue','MarkerEdgeColor','white');
 grid on

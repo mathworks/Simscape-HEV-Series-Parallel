@@ -1,5 +1,5 @@
 %% OPEN MODEL
-% Copyright 2011 The MathWorks, Inc.
+% Copyright 2011-2014 The MathWorks, Inc.
 
 mdl = 'HEV_Model_Local_Solver';
 open_system(mdl);

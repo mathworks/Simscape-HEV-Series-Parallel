@@ -1,6 +1,4 @@
 %% SETUP MODEL FOR RSIM
-% Copyright 2011 The MathWorks(TM), Inc.
-
 HEV_Vehicle_Mass = HEV_Param.Vehicle.Mass;
 HEV_Model_Driver_Ki = 0.04;
 mdl = 'HEV_Model_PCT';
@@ -16,8 +14,8 @@ SimSettings = Generate_Sim_Settings(Mass_array,'HEV_Vehicle_Mass',rtp);
 numSims = length(SimSettings);
 out = cell(1, numSims);
 
-%% START MATLAB POOL
-matlabpool;
+%% START PARALLEL POOL
+parpool(2);
 Initialize_MLPool
 
 %% SIMULATE
@@ -43,6 +41,14 @@ xlabel('Time (s)','FontSize',12,'FontWeight','Bold');
 ylabel('Motor Torque','FontSize',12,'FontWeight','Bold');
 legend(cellstr(num2str(fliplr(Mass_array(1:1:end))')),'FontSize',10);
 
-%% CLOSE MATLABPOOL 
-matlabpool close
+%% CLOSE PARALLEL POOL
+delete(gcp);
 HEV_Param.Control.Mode_Logic_TS = 0.1;
+
+%% CLEANUP DIR
+bdclose(mdl);
+delete('*.mex*')
+!rmdir slprj /S/Q
+
+% Copyright 2013-2014 The MathWorks(TM), Inc.
+
