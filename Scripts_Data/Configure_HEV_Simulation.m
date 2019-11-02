@@ -1,7 +1,7 @@
 % Copyright 2011 The MathWorks, Inc.
 
 %disp('CONFIGURING MODEL...');
-HEV_Solver_Selection = 'ode15s';
+HEV_Solver_Selection = 'ode23t';
 %evalin('base',['disp([''Mode Logic TS = '' num2str(HEV_Param.Control.Mode_Logic_TS)])']);
 
 %disp('Checking blocks...');
