@@ -105,6 +105,7 @@ HEV_Param.Vehicle.Mass = 600*2;         % kg
 HEV_Param.Vehicle.Tire_Radius = 0.3;    % m
 HEV_Param.Vehicle.Wheel_Inertia = 0.1;  % kg*m^2
 HEV_Param.Vehicle.Aero_Drag_Coeff = 0.26;
+HEV_Param.Vehicle.Incline = 0;
 HEV_Param.Vehicle.Engine_Vehicle_Gear_Ratio = 1.3;
 HEV_Param.Vehicle.Distance_CG_FrontAxle = 1.35;
 HEV_Param.Vehicle.Distance_CG_RearAxle = 1.35;
@@ -189,5 +190,4 @@ HEV_Param.Battery_Cell.ns = 6; %() Number of cells in series in each parallel br
     
 % Compute initial extracted charge
 HEV_Param.Battery_Cell.Qe_init = (1-HEV_Param.Battery_Cell.SOC_init)*HEV_Param.Battery_Cell.Kc*HEV_Param.Battery_Cell.Costar*interp1([HEV_Param.Battery_Cell.theta_f HEV_Param.Battery_Cell.Kt_Temps],[0 HEV_Param.Battery_Cell.Kt],HEV_Param.Battery_Cell.theta_init,'spline');
-
 

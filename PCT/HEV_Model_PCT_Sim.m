@@ -6,7 +6,7 @@ open_system(mdl);
 
 %% CONFIGURE FOR TEST
 Select_HEV_Model_Systems('Sys BC VS',HEV_Configs);
-set_param(mdl,'StopFcn',['%' get_param(mdl,'StopFcn')]);
+HEVSP_tictoc('off');
 set_param([mdl '/Vehicle Dynamics/Simple'],'mass','HEV_Vehicle_Mass');
 set_param([mdl '/SLRT Scope'],'Commented','on');
 set_param(bdroot,'SimscapeLogType','none');
@@ -18,7 +18,7 @@ save_system(mdl);
 rtp = Simulink.BlockDiagram.buildRapidAcceleratorTarget(mdl);
 
 %% GENERATE PARAMETER SETS
-Mass_array = [1000:100:1600]; 
+Mass_array = [1000:50:1600]; 
 SimSettings = Generate_Sim_Settings(Mass_array,'HEV_Vehicle_Mass',rtp);
 
 numSims = length(SimSettings);
@@ -30,11 +30,19 @@ Initialize_MLPool
 
 %% SIMULATE
 tic;
+for i = 1:numSims
+    out{i} = sim(mdl, SimSettings{i});
+end
+Total_Testing_Time = toc;
+disp(['Total Testing Time (for)    = ' num2str(Total_Testing_Time)]);
+
+%% SIMULATE
+tic;
 parfor i = 1:numSims
     out{i} = sim(mdl, SimSettings{i});
 end
 Total_Testing_Time = toc;
-disp(['Total Testing Time = ' num2str(Total_Testing_Time)]);
+disp(['Total Testing Time (parfor) = ' num2str(Total_Testing_Time)]);
 
 %% PLOT RESULTS
 figure(1)
@@ -56,8 +64,7 @@ delete(gcp);
 HEV_Param.Control.Mode_Logic_TS = 0.1;
 
 %% UNDO CONFIGURATION CHANGES, CLEANUP DIR 
-stopfn_str = get_param(mdl,'StopFcn');
-set_param(mdl,'StopFcn',stopfn_str(2:end));
+HEVSP_tictoc('on');
 set_param([mdl '/Vehicle Dynamics/Simple'],'mass','HEV_Param.Vehicle.Mass');
 set_param([mdl '/SLRT Scope'],'Commented','off');
 set_param(bdroot,'SimscapeLogType','all');
