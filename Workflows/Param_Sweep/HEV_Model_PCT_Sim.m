@@ -1,18 +1,22 @@
 %% Script to run HEV_SeriesParallel in parallel
+% Copyright 2013-2020 The MathWorks(TM), Inc.
 
-% Resave model in PCT directory
-cd(fileparts(which('HEV_SeriesParallel.slx')));
-cd('PCT');
+% Move to folder where script is saved
+cd(fileparts(which(mfilename)));
+
+% Open model and save under another name for test
 orig_mdl = 'HEV_SeriesParallel';
-mdl = [orig_mdl '' ]; % Normally would add suffix for PCT copy
 open_system(orig_mdl);
-save_system(orig_mdl,[pwd filesep mdl]);
+mdl = [orig_mdl '_pct_temp' ]; 
+save_system(orig_mdl,mdl);
+
+%% Configure model for tests
 
 % Set up parameters
 HEV_Vehicle_Mass = HEV_Param.Vehicle.Mass;
 HEV_Model_Driver_Ki = 0.04;
 
-% Set up model - vehicle configuration, other settings
+% Model settings
 Select_HEV_Model_Systems(mdl,'Sys BC VS',HEV_Configs);
 HEVSP_tictoc('off');
 set_param([mdl '/Vehicle Dynamics/Simple'],'mass','HEV_Vehicle_Mass');
@@ -23,7 +27,7 @@ set_param(mdl,'StopTime',num2str(eval(['UrbanCycle' num2str(Drive_Cycle_Num) '.t
 
 save_system(mdl);
 
-%% GENERATE PARAMETER SETS
+%% Generate parameter sets
 Mass_array = [1000:40:1600]; 
 
 for i=1:length(Mass_array)
@@ -31,23 +35,54 @@ for i=1:length(Mass_array)
     simInput(i) = simInput(i).setVariable('HEV_Vehicle_Mass',Mass_array(i));
 end
 
-%% Run
-clear simOut
-gcp('nocreate');
+%% Run one simulation to see time used
+timerVal = tic;
+sim(mdl)
+Elapsed_Sim_Time_single = toc(timerVal);
+disp(['Elapsed Simulation Time Single Run: ' num2str(Elapsed_Sim_Time_single)]);
 
-% Series
-simOut  = sim(simInput,'ShowProgress','on','UseFastRestart','on');
+%% Run parameter sweep in parallel
+timerVal = tic;
+simOut = parsim(simInput,'ShowSimulationManager','on',...
+    'ShowProgress','on','UseFastRestart','on',...
+    'TransferBaseWorkspaceVariables','on');
+Elapsed_Time_Time_parallel  = toc(timerVal);
 
-%% Plots
-if ~exist('h4_hev_seriesparallel_pct', 'var') || ...
-        ~isgraphics(h4_hev_seriesparallel_pct, 'figure')
-    h4_hev_seriesparallel_pct = figure('Name', 'hev_seriesparallel_pct');
+%% Calculate elapsed time less setup of parallel
+Elapsed_Time_Sweep = ...
+    (datenum(simOut(end).SimulationMetadata.TimingInfo.WallClockTimestampStop) - ...
+    datenum(simOut(1).SimulationMetadata.TimingInfo.WallClockTimestampStart)) * 86400;
+disp(['Elapsed Sweep Time Total:       ' sprintf('%5.2f',Elapsed_Time_Sweep)]);
+disp(['Elapsed Sweep Time/(Num Tests): ' sprintf('%5.2f',Elapsed_Time_Sweep/length(simOut))]);
+
+%% Plot results
+plot_sim_res(simOut,'Parallel Test',Elapsed_Time_Time_parallel)
+
+
+%% Close parallel pool
+delete(gcp);
+
+%% Cleanup directory
+
+bdclose(mdl);
+delete([mdl '.slx']);
+
+
+
+%% Plot Function
+function plot_sim_res(simOut,annotation_str,elapsed_time)
+
+% Plot Results
+fig_handle_name = 'h4_hev_seriesparallel_pct';
+
+handle_var = evalin('base',['who(''' fig_handle_name ''')']);
+if(isempty(handle_var))
+    evalin('base',[fig_handle_name ' = figure(''Name'', ''' fig_handle_name ''');']);
+elseif ~isgraphics(evalin('base',handle_var{:}))
+    evalin('base',[fig_handle_name ' = figure(''Name'', ''' fig_handle_name ''');']);
 end
-figure(h4_hev_seriesparallel_pct)
-clf(h4_hev_seriesparallel_pct)
-
-temp_colororder = get(gca,'defaultAxesColorOrder');
-set(gcf,'Position',[11   356   545   293]);
+figure(evalin('base',fig_handle_name))
+clf(evalin('base',fig_handle_name))
 
 for i=length(simOut):-1:1
     data = simOut(i).Motor;
@@ -57,23 +92,9 @@ end
 title('Motor Torque','FontSize',16,'FontWeight','Bold');
 xlabel('Time (s)','FontSize',12,'FontWeight','Bold');
 ylabel('Motor Torque','FontSize',12,'FontWeight','Bold');
+Mass_array = evalin('base','Mass_array');
 legend(cellstr(num2str(fliplr(Mass_array(1:1:end))')),'FontSize',10);
 
-%% Parallel
-simOut  = parsim(simInput,'ShowProgress','on','UseFastRestart','on','ShowSimulationManager','on','TransferBaseWorkspaceVariables','on');
-
-%% CLOSE PARALLEL POOL
-delete(gcp);
-
-%% CLEANUP DIR
-%{x
-
-bdclose(mdl);
-movefile([mdl '.slx'],[mdl '_pct_temp.slx']);
-!rmdir slprj /S/Q
-delete([mdl '.slxc']);
-
-%}x
-
-% Copyright 2013-2019 The MathWorks(TM), Inc.
+text(0.05,0.05,[annotation_str ', Elapsed Time: ' num2str(elapsed_time)],'Color',[1 1 1]*0.6,'Units','Normalized');
+end
 

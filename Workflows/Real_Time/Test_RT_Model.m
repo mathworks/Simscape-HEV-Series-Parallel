@@ -95,6 +95,6 @@ h4=stairs(t_rt2,y_rt2,'Color',temp_colororder(4,:),'LineWidth',2);
 hold off
 legend({'Reference','Fixed-Step','Real-Time','Modified'},'Location','NorthWest');
 
-% Copyright 2011-2019 The MathWorks(TM), Inc.
+% Copyright 2011-2020 The MathWorks(TM), Inc.
 %% Close model and clean up directory
 cleanup_rt_dir

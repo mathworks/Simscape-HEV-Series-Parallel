@@ -1,4 +1,4 @@
-% Copyright 2011-2019 The MathWorks, Inc.
+% Copyright 2011-2020 The MathWorks, Inc.
 
 %disp('DEFINING PARAMETERS...');
 % HEV SERIES PARALLEL PARAMETERS
@@ -147,12 +147,12 @@ HEV_Param.Battery_Cell.NominalCap = 50; %(Ah)
     
 % Battery Block Initial Conditions
 % Initial State of Charge (% of full charge)
-% Initial Electrolyte Temperature (캜, typically same as ambient temp)
+% Initial Electrolyte Temperature (째C, typically same as ambient temp)
 HEV_Param.Battery_Cell.SOC_init = 0.8;
 HEV_Param.Battery_Cell.theta_init = 25;
     
 % Battery Block Thermal Parameters
-HEV_Param.Battery_Cell.Ctheta = 400; %(J/캜) Thermal Capacitance
+HEV_Param.Battery_Cell.Ctheta = 400; %(J/째C) Thermal Capacitance
 HEV_Param.Battery_Cell.Area = 0.01; % (m^2) Surface area of battery exposed to air
 HEV_Param.Battery_Cell.Rtheta = 20;  %(W/m^2/K) Convective heat transfer coefficient
     
@@ -164,7 +164,7 @@ HEV_Param.Battery_Cell.Kt_Temps = [25 40 60 75]; % Temperature breakpoints for K
 HEV_Param.Battery_Cell.Kt = [0.80,1.10,1.20,1.12;]; %() LUT output values
 HEV_Param.Battery_Cell.delta = 0.73; %()
 HEV_Param.Battery_Cell.Istar = 15; %(A) Nominal Current (=cap/disch_t)
-HEV_Param.Battery_Cell.theta_f = -40; %(캜) Electrolyte Freezing Temp
+HEV_Param.Battery_Cell.theta_f = -40; %(째C) Electrolyte Freezing Temp
     
 % Battery Block Parasitic Branch Parameters
 % End of charge cycle at ranges of current/temp
@@ -176,7 +176,7 @@ HEV_Param.Battery_Cell.Taup = 3; % (s)
     
 % Battery Block Main Branch Parameters
 HEV_Param.Battery_Cell.Emo = 2.18*10; % (V) [max o.c. volts per cell]
-HEV_Param.Battery_Cell.Ke = 0.0006; %(V/캜)
+HEV_Param.Battery_Cell.Ke = 0.0006; %(V/째C)
 HEV_Param.Battery_Cell.Ao = -0.6; % ()
 HEV_Param.Battery_Cell.Roo = 0.0042; % (Ohm)
 HEV_Param.Battery_Cell.R10 = 0.0010; %(Ohm)

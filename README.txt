@@ -1,6 +1,6 @@
 README file for HEV_SeriesParallel demonstration
 Steve Miller, updated 2017
-Copyright 2011-2019 The MathWorks, Inc.
+Copyright 2011-2020 The MathWorks, Inc.
 
 To start this demonstration, open project HEV_SeriesParallel.prj
 This will bring you to the simplest configuration of the full vehicle.
