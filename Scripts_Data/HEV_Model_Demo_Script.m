@@ -15,7 +15,7 @@
 % <tr>7.  Power Quality Plots: <a href="matlab:edit DC_Power_Quality_Analysis;">Create Plots</a><br>
 % <br>
 % <tr><b><u>Deploy</u></b><br>
-% <tr>8. <a href="matlab:cd(fileparts(which('Test_RT_Model.m')));edit Test_RT_Model">Improve Simulation Performance With Local Solvers</a><br>
+% <tr>8. <a href="matlab:cd(fileparts(which('Test_RT_Model.m')));edit Test_RT_Model">Deploy to Real-Time Hardware for HIL Testing</a><br>
 % <tr>9. <a href="matlab:cd(fileparts(which('HEV_Model_RSIM.m')));edit HEV_Model_RSIM">Deploy Simulation As a Standalone Executable</a><br>
 % </style>
 % </style>

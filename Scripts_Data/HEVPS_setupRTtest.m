@@ -8,7 +8,7 @@ Drive_Cycle_Num = 1;
 
 % Choose target
 cs = getActiveConfigSet(bdroot);
-cs.switchTarget('slrt.tlc',[]);
+cs.switchTarget('slrealtime.tlc',[]);
 %   Side effect of target selection
 set_param(mdl,'SaveFormat','Array'); 
 

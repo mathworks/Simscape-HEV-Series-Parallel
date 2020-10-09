@@ -2,7 +2,7 @@
 
 tvar_Nonlinear_Iterations = '3';
 tvar_StepSize = '0.005';
-Select_HEV_Model_Systems(mdl,'Sys BC VS',HEV_Configs);
+Select_HEV_Model_Systems(bdroot,'Sys BC VS',HEV_Configs);
 tvar_LocalSolver = 'NE_BACKWARD_EULER_ADVANCER';
 
 % Do not run script that autoconfigures solver settings based on variants
@@ -15,4 +15,4 @@ tvar_solverBlock = find_system(bdroot,'FollowLinks','on','LookUnderMasks','on', 
 for i=1:size(tvar_solverBlock,1)
     set_param(char(tvar_solverBlock(i)), 'UseLocalSolver','on','DoFixedCost','on','MaxNonlinIter',tvar_Nonlinear_Iterations,'LocalSolverChoice',tvar_LocalSolver,'LocalSolverSampleTime',tvar_StepSize);
 end
-clear tvar_Nonlinear_Iterations tvar_StepSize tvar_LocalSolver tvar_solverBlock
+clear tvar_Nonlinear_Iterations tvar_StepSize etvar_LocalSolver tvar_solverBlock

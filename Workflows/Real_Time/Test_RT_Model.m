@@ -40,58 +40,62 @@ open_system(get_param(tune_bpth,'Parent'),'force')
 set_param(tune_bpth,'Selected','on');
 
 %% Build and download to real-time target
+% Choose target
+cs = getActiveConfigSet(mdl);
+cs.switchTarget('slrealtime.tlc',[]);
+
 slbuild(mdl);
 
-%% Set simulation mode to external
-set_param(mdl,'SimulationMode','External');
+%% Download to real-time target
+tg = slrealtime;
+tg.connect;
 
-%% Connect to target and run
-set_param(mdl, 'SimulationCommand', 'connect')
-set_param(mdl, 'SimulationCommand', 'start')
+%% Run application
+tg.load(mdl)
+tg.start('ReloadOnStop',true,'ExportToBaseWorkspace',true)
 
 open_system(mdl);
-disp('Waiting for Simulink Real-Time to finish...');
+disp('Waiting for SLRT to finish...');
 pause(1);
-disp(get_param(mdl,'SimulationStatus'));
-while(~strcmp(get_param(mdl,'SimulationStatus'),'stopped'))
+while(strcmp(tg.status,'running'))
     pause(2);
-    disp(get_param(mdl,'SimulationStatus'));
+    disp(tg.status);
 end
 pause(2);
 
-t_rt = tg.TimeLog; y_rt = tg.OutputLog;
+%% Extract results from logged data in Simulink Data Inspector
+y_slrt1 = logsout.LiveStreamSignals.get('Veh Spd');
 
 %% Add results from real-time simulation
 figure(1)
 hold on
-h3=stairs(t_rt,y_rt,'c:','LineWidth',2.5);
+h3=stairs(y_slrt1.Values.Time,y_slrt1.Values.Data,'c:','LineWidth',2.5);
 hold off
 legend({'Reference','Fixed-Step','Real-Time'},'Location','NorthWest');
 
 %% Change a Simscape block parameter
-mass_ParamId = getparamid(tg,'','HEV_Vehicle_Mass');
-disp(['Vehicle Mass (current) = ' num2str(getparam(tg,mass_ParamId))]);
-setparam(tg,mass_ParamId,1800);
-disp(['Vehicle Mass (new)     = ' num2str(getparam(tg,mass_ParamId))]);
+disp(['Vehicle Mass (current) = ' num2str(getparam(tg,'','HEV_Vehicle_Mass'))]);
+setparam(tg,'','HEV_Vehicle_Mass',1800)
+disp(['Vehicle Mass (new)     = ' num2str(getparam(tg,'','HEV_Vehicle_Mass'))]);
 
-%% Run simulation on real-time hardware
-tg.start
+%% Run simulation with new parameter value
+tg.start('ReloadOnStop',true,'ExportToBaseWorkspace',true)
 
 disp('Waiting for Simulink Real-Time to finish...');
 pause(1);
-disp(tg.Status);
-while(~strcmp(tg.Status,'stopped'))
+while(strcmp(tg.status,'running'))
     pause(2);
-    disp(tg.Status);
+    disp(tg.status);
 end
 pause(2);
 
-t_rt2 = tg.TimeLog; y_rt2 = tg.OutputLog;
+%% Extract results from logged data in Simulink Data Inspector
+y_slrt2 = logsout.LiveStreamSignals.get('Veh Spd');
 
 %% Add results from modified vehicle model
 figure(1)
 hold on
-h4=stairs(t_rt2,y_rt2,'Color',temp_colororder(4,:),'LineWidth',2);
+h4=stairs(y_slrt2.Values.Time,y_slrt2.Values.Data,'Color',temp_colororder(4,:),'LineWidth',2);
 hold off
 legend({'Reference','Fixed-Step','Real-Time','Modified'},'Location','NorthWest');
 
