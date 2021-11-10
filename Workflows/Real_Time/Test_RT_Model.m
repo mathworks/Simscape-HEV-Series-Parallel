@@ -64,7 +64,7 @@ end
 pause(2);
 
 %% Extract results from logged data in Simulink Data Inspector
-y_slrt1 = logsout.LiveStreamSignals.get('Veh Spd');
+y_slrt1 = logsout.getElement('Veh Spd');
 
 %% Add results from real-time simulation
 figure(1)
@@ -90,7 +90,7 @@ end
 pause(2);
 
 %% Extract results from logged data in Simulink Data Inspector
-y_slrt2 = logsout.LiveStreamSignals.get('Veh Spd');
+y_slrt2 = logsout.getElement('Veh Spd');
 
 %% Add results from modified vehicle model
 figure(1)
