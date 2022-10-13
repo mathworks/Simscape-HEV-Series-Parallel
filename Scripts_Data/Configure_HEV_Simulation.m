@@ -10,7 +10,10 @@ expModel = bdroot;
 HEV_Model_DLevel_blk = [expModel '/Electrical'];
 DetailLevel = get_param(HEV_Model_DLevel_blk,'OverrideUsingVariant');
 
-HEV_Model_BattModel_blk = find_system(bdroot,'FollowLinks','on','LookUnderMasks','on','SearchDepth','3','Name','Battery');
+f = Simulink.FindOptions('FollowLinks',1,'LookUnderMasks','all',...
+    'MatchFilter',@Simulink.match.activeVariants,'SearchDepth',3);
+HEV_Model_BattModel_blk = Simulink.findBlocks(bdroot,'Name','Battery',f);
+
 BattModel = get_param(HEV_Model_BattModel_blk,'OverrideUsingVariant');
 
 

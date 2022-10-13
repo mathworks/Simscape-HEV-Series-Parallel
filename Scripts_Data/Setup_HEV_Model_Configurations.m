@@ -2,8 +2,8 @@
 
 expModel = bdroot;
 
-electrical_path = char(find_system(expModel,'Name','Electrical'));
-vehicle_path = char(find_system(expModel,'Name','Vehicle Dynamics'));
+electrical_path = char(find_system(expModel,'MatchFilter',@Simulink.match.allVariants,'Name','Electrical'));
+vehicle_path = char(find_system(expModel,'MatchFilter',@Simulink.match.allVariants,'Name','Vehicle Dynamics'));
 
 HEV_Electrical_Variants = {'Mean Value' 'System Level' 'Detailed'};
 

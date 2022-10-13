@@ -11,8 +11,11 @@ set_param(bdroot,'InitFcn','%Configure_HEV_Simulation');
 HEV_Param.Control.Mode_Logic_TS = str2num(tvar_StepSize);
 
 set_param(bdroot,'Solver','ode1','FixedStep','auto');
-tvar_solverBlock = find_system(bdroot,'FollowLinks','on','LookUnderMasks','on', 'SubClassName', 'solver');
+
+f    = Simulink.FindOptions('FollowLinks',0,'LookUnderMasks','none');
+tvar_solverBlock = Simulink.findBlocks(bdroot, 'SubClassName', 'solver',f);
+
 for i=1:size(tvar_solverBlock,1)
-    set_param(char(tvar_solverBlock(i)), 'UseLocalSolver','on','DoFixedCost','on','MaxNonlinIter',tvar_Nonlinear_Iterations,'LocalSolverChoice',tvar_LocalSolver,'LocalSolverSampleTime',tvar_StepSize);
+    set_param(tvar_solverBlock(i), 'UseLocalSolver','on','DoFixedCost','on','MaxNonlinIter',tvar_Nonlinear_Iterations,'LocalSolverChoice',tvar_LocalSolver,'LocalSolverSampleTime',tvar_StepSize);
 end
 clear tvar_Nonlinear_Iterations tvar_StepSize etvar_LocalSolver tvar_solverBlock
