@@ -1,4 +1,4 @@
-% Copyright 2011-2022 The MathWorks, Inc.
+% Copyright 2011-2023 The MathWorks, Inc.
 
 % SELECT SIMULATION RESULTS TO BE COMPARED
 VarSetStr = 'DSM';
