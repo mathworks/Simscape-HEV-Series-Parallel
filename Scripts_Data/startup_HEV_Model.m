@@ -15,7 +15,7 @@ if(~isempty(ver('parallel')))
 end
 
 if(open_start_content)
-    open('HEV_Model_Demo_Script.html')
+    web('HEV_Model_Demo_Script.html')
     HEV_SeriesParallel
 end
 
