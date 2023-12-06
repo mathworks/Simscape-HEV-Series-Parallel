@@ -2,7 +2,7 @@
 Copyright 2011-20203 The MathWorks(TM), Inc.
 
 View on File Exchange: [![View Hybrid-Electric Vehicle Model in Simulink on File Exchange](https://www.mathworks.com/matlabcentral/images/matlab-file-exchange.svg)](https://www.mathworks.com/matlabcentral/fileexchange/28441-hybrid-electric-vehicle-model-in-simulink)  
-[![Open in MATLAB Online]: [![Open in MATLAB Online](https://www.mathworks.com/images/responsive/global/open-in-matlab-online.svg)](https://matlab.mathworks.com/open/github/v1?repo=mathworks/Simscape-HEV-Series-Parallel&project=HEV_SeriesParallel.prj)
+You can also open in MATLAB Online: [![Open in MATLAB Online](https://www.mathworks.com/images/responsive/global/open-in-matlab-online.svg)](https://matlab.mathworks.com/open/github/v1?repo=mathworks/Simscape-HEV-Series-Parallel&project=HEV_SeriesParallel.prj)
 
 To start this demonstration, open project HEV_SeriesParallel.prj
 This will bring you to the simplest configuration of the full vehicle.
