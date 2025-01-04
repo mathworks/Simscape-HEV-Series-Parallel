@@ -1,4 +1,4 @@
-% Copyright 2011-2023 The MathWorks, Inc.
+% Copyright 2011-2024 The MathWorks, Inc.
 
 HEV_Model_HomeDir = pwd;
 

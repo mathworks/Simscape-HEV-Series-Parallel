@@ -1,5 +1,5 @@
 function Select_HEV_Model_Systems(modelname,HEV_Config_Name,HEV_Configs)
-% Copyright 2011-2023 The MathWorks, Inc.
+% Copyright 2011-2024 The MathWorks, Inc.
 
 % Find block with mask parameters to set variants
 f = Simulink.FindOptions('SearchDepth',1,'regexp',true);

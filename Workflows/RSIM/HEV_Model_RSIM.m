@@ -1,5 +1,5 @@
 %% OPEN AND CONFIGURE MODEL
-% Copyright 2011-2023 The MathWorks, Inc.
+% Copyright 2011-2024 The MathWorks, Inc.
 
 mdl = 'HEV_SeriesParallel';
 open_system(mdl);

@@ -1,4 +1,4 @@
-% Copyright 2011-2023 The MathWorks, Inc.
+% Copyright 2011-2024 The MathWorks, Inc.
 
 %disp('CONFIGURING MODEL...');
 HEV_Solver_Selection = 'ode15s';

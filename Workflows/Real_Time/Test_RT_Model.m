@@ -99,6 +99,6 @@ h4=stairs(y_slrt2.Values.Time,y_slrt2.Values.Data,'Color',temp_colororder(4,:),'
 hold off
 legend({'Reference','Fixed-Step','Real-Time','Modified'},'Location','NorthWest');
 
-% Copyright 2011-2023 The MathWorks(TM), Inc.
+% Copyright 2011-2024 The MathWorks(TM), Inc.
 %% Close model and clean up directory
 cleanup_rt_dir

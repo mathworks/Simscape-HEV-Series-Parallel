@@ -1,5 +1,5 @@
 function plot_HEV_Data(FigID,SubPlID,DataStr,SigID,ValID,titlestr,PlotChoice)
-% Copyright 2011-2023 The MathWorks, Inc.
+% Copyright 2011-2024 The MathWorks, Inc.
 
 figure(FigID)
 temp_colororder = get(gca,'defaultAxesColorOrder');
