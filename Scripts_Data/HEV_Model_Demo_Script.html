@@ -9,7 +9,7 @@ To make changes, update the MATLAB code and republish this document.
 <title>HEV Model Demo Script</title>
 <meta name="generator" content="MATLAB 24.2">
 <link rel="schema.DC" href="http://purl.org/dc/elements/1.1/">
-<meta name="DC.date" content="2024-09-12">
+<meta name="DC.date" content="2025-09-02">
 <meta name="DC.source" content="HEV_Model_Demo_Script.m">
 <style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
@@ -81,23 +81,16 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 <span style="font-family:Arial">
 <span style="font-size:10pt">
 <tr><b><u>Model</u></b><br>
-<tr>1.  <a href="matlab:open_system('HEV_SeriesParallel');">Open HEV Model</a><br>
-<tr>2.  <a href="matlab:Test_HEV_Model_SHORT;">Run Drive Cycles</a><br>
-<tr>3.  <a href="matlab:cd(fileparts(which('Create_Fuel_Consumption_LUT.m')));edit Create_Fuel_Consumption_LUT;">Estimate Fuel Economy With Measured Data</a><br>
+<tr>1.  <a href="matlab:open_system('HEV_SeriesParallel');">Open HEV Model</a>, <a href="matlab:web('HEV_SeriesParallel.html');">See Overview</a><br>
+<tr>2.  <a href="matlab:cd(fileparts(which('Create_Fuel_Consumption_LUT.m')));edit Create_Fuel_Consumption_LUT;">Estimate Fuel Economy With Measured Data</a><br>
 <br>
 <tr><b><u>Simulate</u></b><br>
-<tr>4. <a href="matlab:cd(fileparts(which('HEV_Model_PCT_Sim.m')));edit HEV_Model_PCT_Sim;HEV_SeriesParallel;">Distribute Simulations Using Parallel Computing</a><br>
-<tr>5.  Test and Analyze <a href="matlab:open('HEV_MODEL_TestManager.mldatx');">Test Case Management</a><br>
-<tr>6.  Document: <a href="matlab:open('HEV_Model_Report_SHORT.html');">View Report</a>, <a href="matlab:cd(fileparts(which('HEV_Model_Report_SHORT.rpt')));open('HEV_Model_Report_SHORT.rpt');">Generate Report</a><br>
-<tr>7.  Power Quality Plots: <a href="matlab:edit DC_Power_Quality_Analysis;">Create Plots</a><br>
+<tr>3. <a href="matlab:cd(fileparts(which('HEV_Model_PCT_Sim.m')));edit HEV_Model_PCT_Sim;HEV_SeriesParallel;">Distribute Simulations Using Parallel Computing</a><br>
 <br>
-<tr><b><u>Deploy</u></b><br>
-<tr>8. <a href="matlab:cd(fileparts(which('Test_RT_Model.m')));edit Test_RT_Model">Deploy to Real-Time Hardware for HIL Testing</a><br>
-<tr>9. <a href="matlab:cd(fileparts(which('HEV_Model_RSIM.m')));edit HEV_Model_RSIM">Deploy Simulation As a Standalone Executable</a><br>
 </style>
 </style>
 </p>
-<p>Copyright 2011-2024 The MathWorks&trade;, Inc.</p>
+<p>Copyright 2011-2025 The MathWorks&trade;, Inc.</p>
 <p class="footer">
 <br>
 <a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2024b</a>
@@ -112,24 +105,17 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 % <span style="font-family:Arial">
 % <span style="font-size:10pt">
 % <tr><b><u>Model</u></b><br>
-% <tr>1.  <a href="matlab:open_system('HEV_SeriesParallel');">Open HEV Model</a><br>
-% <tr>2.  <a href="matlab:Test_HEV_Model_SHORT;">Run Drive Cycles</a><br>
-% <tr>3.  <a href="matlab:cd(fileparts(which('Create_Fuel_Consumption_LUT.m')));edit Create_Fuel_Consumption_LUT;">Estimate Fuel Economy With Measured Data</a><br>
+% <tr>1.  <a href="matlab:open_system('HEV_SeriesParallel');">Open HEV Model</a>, <a href="matlab:web('HEV_SeriesParallel.html');">See Overview</a><br>
+% <tr>2.  <a href="matlab:cd(fileparts(which('Create_Fuel_Consumption_LUT.m')));edit Create_Fuel_Consumption_LUT;">Estimate Fuel Economy With Measured Data</a><br>
 % <br>
 % <tr><b><u>Simulate</u></b><br>
-% <tr>4. <a href="matlab:cd(fileparts(which('HEV_Model_PCT_Sim.m')));edit HEV_Model_PCT_Sim;HEV_SeriesParallel;">Distribute Simulations Using Parallel Computing</a><br>
-% <tr>5.  Test and Analyze <a href="matlab:open('HEV_MODEL_TestManager.mldatx');">Test Case Management</a><br>
-% <tr>6.  Document: <a href="matlab:open('HEV_Model_Report_SHORT.html');">View Report</a>, <a href="matlab:cd(fileparts(which('HEV_Model_Report_SHORT.rpt')));open('HEV_Model_Report_SHORT.rpt');">Generate Report</a><br>
-% <tr>7.  Power Quality Plots: <a href="matlab:edit DC_Power_Quality_Analysis;">Create Plots</a><br>
+% <tr>3. <a href="matlab:cd(fileparts(which('HEV_Model_PCT_Sim.m')));edit HEV_Model_PCT_Sim;HEV_SeriesParallel;">Distribute Simulations Using Parallel Computing</a><br>
 % <br>
-% <tr><b><u>Deploy</u></b><br>
-% <tr>8. <a href="matlab:cd(fileparts(which('Test_RT_Model.m')));edit Test_RT_Model">Deploy to Real-Time Hardware for HIL Testing</a><br>
-% <tr>9. <a href="matlab:cd(fileparts(which('HEV_Model_RSIM.m')));edit HEV_Model_RSIM">Deploy Simulation As a Standalone Executable</a><br>
 % </style>
 % </style>
 % </html>
 % 
-% Copyright 2011-2024 The MathWorks(TM), Inc.
+% Copyright 2011-2025 The MathWorks(TM), Inc.
 
 
 

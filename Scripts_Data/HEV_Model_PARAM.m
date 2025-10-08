@@ -1,5 +1,20 @@
 % Copyright 2011-2024 The MathWorks, Inc.
 
+load UrbanCycle1
+load UrbanCycle2
+load UrbanCycle3
+load UrbanCycle4
+load UrbanCycle5
+load UrbanCycle6
+DriveCycles(1) = UrbanCycle1;
+DriveCycles(2) = UrbanCycle2;
+DriveCycles(3) = UrbanCycle3;
+DriveCycles(4) = UrbanCycle4;
+DriveCycles(5) = UrbanCycle5;
+DriveCycles(6) = UrbanCycle6;
+
+Drive_Cycle_Num = 1;
+
 %disp('DEFINING PARAMETERS...');
 % HEV SERIES PARALLEL PARAMETERS
 
@@ -17,7 +32,7 @@ HEV_Param.Battery_Det.Series_Resistance = 0.2/10;   % Ohm
 HEV_Param.Battery_Sys.Nominal_Voltage = 217;
 HEV_Param.Battery_Sys.Internal_Resistance = 0.24691;% Ohm
 HEV_Param.Battery_Sys.Rated_Capacity = 6.9;     % Ampere-hours
-HEV_Param.Battery_Sys.Initial_Charge = 6.9;    % Ampere-hours
+HEV_Param.Battery_Sys.Initial_Charge = HEV_Param.Battery_Sys.Rated_Capacity*0.9;    % Ampere-hours
 HEV_Param.Battery_Sys.Expn_Voltage = 215.0342;       % V
 HEV_Param.Battery_Sys.Expn_Charge = 2.3438;
 

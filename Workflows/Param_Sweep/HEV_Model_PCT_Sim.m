@@ -14,16 +14,17 @@ save_system(orig_mdl,mdl);
 
 % Set up parameters
 HEV_Vehicle_Mass = HEV_Param.Vehicle.Mass;
-HEV_Model_Driver_Ki = 0.04;
+%HEV_Model_Driver_Ki = 0.04;
 
 % Model settings
-Select_HEV_Model_Systems(mdl,'Sys BC VS',HEV_Configs);
-HEVSP_tictoc('off');
-set_param([mdl '/Vehicle Dynamics/Simple'],'mass','HEV_Vehicle_Mass');
-set_param([mdl '/SLRT Scope'],'Commented','on');
-set_param(bdroot,'SimscapeLogType','none');
+HEV_SeriesParallel_config_electrical(mdl,'System')
+%Select_HEV_Model_Systems(mdl,'Sys BC VS',HEV_Configs);
+%HEVSP_tictoc('off');
+set_param([mdl '/Vehicle/Vehicle Body'],'mass','HEV_Vehicle_Mass');
+%set_param([mdl '/SLRT Scope'],'Commented','on');
+%set_param(bdroot,'SimscapeLogType','none');
 Drive_Cycle_Num = 1; 
-set_param(mdl,'StopTime',num2str(eval(['UrbanCycle' num2str(Drive_Cycle_Num) '.time(end)'])));
+%set_param(mdl,'StopTime',num2str(eval(['UrbanCycle' num2str(Drive_Cycle_Num) '.time(end)'])));
 
 save_system(mdl);
 
@@ -32,7 +33,8 @@ Mass_array = [1000:40:1600];
 
 for i=1:length(Mass_array)
     simInput(i) = Simulink.SimulationInput(mdl);
-    simInput(i) = simInput(i).setVariable('HEV_Vehicle_Mass',Mass_array(i));
+    HEV_Vehicle_Mass = Mass_array(i);
+    simInput(i) = simInput(i).setVariable('HEV_Vehicle_Mass',HEV_Vehicle_Mass);
 end
 
 %% Run one simulation to see time used
@@ -85,8 +87,8 @@ figure(evalin('base',fig_handle_name))
 clf(evalin('base',fig_handle_name))
 
 for i=length(simOut):-1:1
-    data = simOut(i).Motor;
-    plot(data.time(:,1),data.signals(3).values(:,1),'LineWidth',2)
+    data = simOut(i).simlog_HEV_SeriesParallel.Electrical.Motor.System.Motor_and_Drive.t.series;
+    plot(data.time,data.values,'LineWidth',2)
     hold all
 end
 title('Motor Torque','FontSize',16,'FontWeight','Bold');

@@ -1,77 +1,54 @@
 # **Hybrid-Electric Vehicle Model in Simulink**
-Copyright 2011-20203 The MathWorks(TM), Inc.
+
+This example shows a simplified series-parallel hybrid electric vehicle (HEV). An interior 
+permanent magnet synchronous machine (IPMSM) and an internal combustion engine (ICE) provide 
+the vehicle propulsion. The ICE also uses electric generator to recharge the high-voltage battery
+during driving. The vehicle transmission and differential are implemented using a fixed-ratio 
+gear-reduction model. The Vehicle Controller subsystem converts the driver inputs 
+into torque commands. The vehicle control strategy is implemented as a Stateflow(R) state machine. 
+
+The electrical system can be configured for a system-level analysis, using abstract motor models
+that do not include power electronic switching.  Complete drive cycles can be run in seconds.
+A more detailed variant includes the three electrical phases and the inverter.  This captures 
+far more detail in the electrical system.
+
+Copyright 2011-2025 The MathWorks(TM), Inc.
 
 View on File Exchange: [![View Hybrid-Electric Vehicle Model in Simulink on File Exchange](https://www.mathworks.com/matlabcentral/images/matlab-file-exchange.svg)](https://www.mathworks.com/matlabcentral/fileexchange/28441-hybrid-electric-vehicle-model-in-simulink)  
 You can also open in MATLAB Online: [![Open in MATLAB Online](https://www.mathworks.com/images/responsive/global/open-in-matlab-online.svg)](https://matlab.mathworks.com/open/github/v1?repo=mathworks/Simscape-HEV-Series-Parallel&project=HEV_SeriesParallel.prj)
 
+## Setup 
 To start this demonstration, open project HEV_SeriesParallel.prj
-This will bring you to the simplest configuration of the full vehicle.
-Look at the slides to see all of the available configurations.
 
-There are a number of things to be aware of with this demonstration.
-1. Configurations
-2. Stateflow
-3. Power Quality
+## **Model - Overview**
+![](Overview/html/HEV_SeriesParallel_01.png)
 
-Details
+## **Model - Electrical System**
+![](Overview/html/HEV_SeriesParallel_02.png)
 
-1. Configurations
+## **Model - Vehicle**
+![](Overview/html/HEV_SeriesParallel_03.png)
 
-1.1 For the Mean Value and Detailed electrical variants, re-do the selection 
-of the Electrical subsystem if you change the battery subsystem.
+## **Simulation Results - System Level**
+![](Overview/html/HEV_SeriesParallel_07.png)
 
-When you change Electrical variants, the solver will change.  This is done 
-automatically via a script that is called in the Initialization mask of 
-the Electrical and Battery blocks (Configure_HEV_Simulation.m).  However, if 
-you change the Battery variant, the solver doesn't change until you re-select 
-the Electrical variant.
+## **Simulation Results - Detailed**
+![](Overview/html/HEV_SeriesParallel_11.png)
 
-You probably will not simulate this interactively anyway, as Mean Value variants 
-take 30 minutes - 3 hours to run, and Detailed variants take 12 hours -- 36 hours 
-to run.
+To learn more about modeling and simulation with Simscape, please visit:
+* [Simscape Getting Started Resources](https://www.mathworks.com/solutions/physical-modeling/resources.html)
+* Product Capabilities:
+   * [Simscape&trade;](https://www.mathworks.com/products/simscape.html)
+   * [Simscape Battery&trade;](https://www.mathworks.com/products/simscape-battery.html)
+   * [Simscape Driveline&trade;](https://www.mathworks.com/products/simscape-driveline.html)
+   * [Simscape Electrical&trade;](https://www.mathworks.com/products/simscape-electrical.html)
+   * [Simscape Fluids&trade;](https://www.mathworks.com/products/simscape-fluids.html)
+   * [Simscape Multibody&trade;](https://www.mathworks.com/products/simscape-multibody.html)
 
+## License
+The license is available in the LICENSE.md file in this GitHub repository.
 
-1.2 The "Cells" variant of the battery is only available for the System-Level 
-electrical variant.
+## Community Support
+[MATLAB Central](https://www.mathworks.com/matlabcentral)
 
-
-2. Stateflow
-
-The Stateflow model produces three outputs that route to the Motor, Generator, 
-and Engine control systems.  However, by default, those signal connections do 
-not affect the output of those control systems.  This is because the Mean Value 
-variant cannot run to completion for Drive Cycle 2 when the Stateflow diagram 
-is connected.  All other variants run to completion.
-
-If you want to connect the Stateflow to the rest of the model, each subsystem 
-has a manual switch in it that allows you to select a signal that uses the 
-Stateflow output to enable/disable the output of the PI controller.  
-However, if you do this, be aware the results will not match the Mean Level 
-and Detailed variants (done in the Report Generation demo).  This represents
-a case where we have made a design change and have automatically documented the 
-effect it has on the overall results.
-
-3. Power Quality
-
-3.1 The power quality demonstration uses Signal Processing Toolbox.  Though 
-it is possible to measure power quality using Simscape Power Systems alone, 
-there are two reasons why we did not use this.
-   
-   1. The FFT analysis in the PowerGUI only checks at a single point in time
-      We wanted to see a representation as time varies to identify the component
-      contributing to poor power quality
-
-   2. The Total Harmonic Distortion block in Simscape Power Systems is only 
-      for AC networks. For an HEV, the DC network is the most interesting.
-      Spectrogram works for both AC and DC networks.
-
-3.2 DC Voltage for HEV_PQ_Test_B
-
-The plot for HEV_PQ_Test_B shows very clearly that the generator is contributing 
-to poor power quality.  However, the voltage on the DC bus for this test shows 
-other larger problems -- the battery can't supply enough voltage for this 
-situation.  This situation was the best example we could find of the spectrogram 
-pointing directly to a component on the network, so we chose to include it.  
-Follow the script DC_Power_Quality_Analysis.m to see the test case
-
-
+Copyright 2025 The MathWorks, Inc.
