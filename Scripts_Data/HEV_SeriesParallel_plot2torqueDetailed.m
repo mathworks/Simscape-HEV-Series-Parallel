@@ -4,7 +4,7 @@
 % The plot below shows the requested and measured torque for the
 % test, as well as the phase currents in the electric drive.
 
-% Copyright 2017-2023 The MathWorks, Inc.
+% Copyright 2017-2025 The MathWorks, Inc.
 
 fieldNamesMotor = fieldnames(simlog_HEV_SeriesParallel.Electrical.Motor);
 if(~isempty(find(strcmp(fieldNamesMotor,'Detailed'))))

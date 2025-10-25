@@ -1,6 +1,6 @@
 % Code to plot simulation results from HEV_SeriesParallel.slx
 
-% Copyright 2017-2023 The MathWorks, Inc.
+% Copyright 2017-2025 The MathWorks, Inc.
 
 % Reuse figure if it exists, else create new figure
 if ~exist('h3_HEV_SeriesParallel', 'var') || ...

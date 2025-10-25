@@ -14,7 +14,7 @@
 % The Scopes subsystem contains scopes that allow you to see the simulation
 % results.
 
-% Copyright 2017-2023 The MathWorks, Inc.
+% Copyright 2017-2025 The MathWorks, Inc.
 
 %% Electric Drive Parameters
 PmaxEM = 35000;      % Maximum power                   [W]

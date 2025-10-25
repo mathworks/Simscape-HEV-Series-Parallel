@@ -4,7 +4,7 @@
 % The plot below shows the requested and measured torque for the
 % test, as well as the phase currents in the electric drive.
 
-% Copyright 2017-2023 The MathWorks, Inc.
+% Copyright 2017-2025 The MathWorks, Inc.
 
 % Reuse figure if it exists, else create new figure
 if ~exist('h1_HEV_SeriesParallel', 'var') || ...
